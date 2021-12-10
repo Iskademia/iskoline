@@ -27,3 +27,5 @@ python manage.py runserver
 ```
 
 Then go to the link in the cmd or terminal in vscode and then the website is running
+
+<!-- This is the Official Method for Running this Application on your Local Machine -->
