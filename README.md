@@ -32,4 +32,7 @@ Then go to the link in the cmd or terminal in vscode and then the website is run
 # Branch Naming Convention
 
 #### Your Initial + Feature/Issue + What App your are working
-##### e.g. - zs/privatechatroom/Student
+##### e.g. 
+```
+zs/privatechatroom/Student
+```
