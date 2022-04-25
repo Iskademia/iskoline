@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+
+
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>Iskoline</title>
+    {% endif %}
+</head>
+<body>
+    <div class="side-menu row">
+            <div class="sidebar">
+                <ul class="list-group">
+                  <a class="list-group-item list-group-item-light" href="{% url 'post-list' %}">Home</a>
+                  <a class="list-group-item list-group-item-light" href="#">Announcements</a>
+                  <a class="list-group-item list-group-item-light" href="#">Chat</a>
+                  <a class="list-group-item list-group-item-light" href="#">Prof</a>
+                </ul>
+            </div>
+        <div class="col-md-8">
+          {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>
