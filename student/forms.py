@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Comment
+from .models import *
 
 
 class PostForm(forms.ModelForm):
@@ -26,4 +26,30 @@ class CommentForm(forms.ModelForm):
 
     class Meta:
         model = Comment
+        fields = ['comment']
+
+class RegistrarPostForm(forms.ModelForm):
+    body = forms.CharField(
+        label='',
+        widget=forms.Textarea(
+            attrs={'rows': '3',
+                   'placeholder': 'Say Something...'}
+        ))
+
+    image = forms.ImageField(required=False)
+
+    class Meta:
+        model = RegistrarPost
+        fields = ['body', 'image']
+
+class RegistrarCommentForm(forms.ModelForm):
+    comment = forms.CharField(
+        label='',
+        widget=forms.Textarea(
+            attrs={'rows': '3',
+                   'placeholder': 'Say Something...'}
+        ))
+
+    class Meta:
+        model = RegistrarComment
         fields = ['comment']
