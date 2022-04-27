@@ -14,4 +14,9 @@ urlpatterns = [
     path('registrar/edit/<int:pk>/', RegistrarPostEditView.as_view(), name='registrar_post_edit'),
     path('registrar/delete/<int:pk>/', RegistrarPostDeleteView.as_view(), name='registrar_post_delete'),
     path('registrar/<int:post_pk>/comment/delete/<int:pk>/', RegistrarCommentDeleteView.as_view(), name='registrar_comment_delete'),
+    path('chairperson', ChairpersonPostListView.as_view(), name='chairperson'),
+    path('chairperson/<int:pk>/', ChairpersonPostDetailView.as_view(), name='chairperson_post_detail'),
+    path('chairperson/edit/<int:pk>/', ChairpersonPostEditView.as_view(), name='chairperson_post_edit'),
+    path('chairperson/delete/<int:pk>/', ChairpersonPostDeleteView.as_view(), name='chairperson_post_delete'),
+    path('chairperson/<int:post_pk>/comment/delete/<int:pk>/', ChairpersonCommentDeleteView.as_view(), name='chairperson_comment_delete'),
 ]

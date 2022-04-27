@@ -50,6 +50,28 @@ class RegistrarCommentForm(forms.ModelForm):
                    'placeholder': 'Say Something...'}
         ))
 
+class ChairpersonPostForm(forms.ModelForm):
+    body = forms.CharField(
+        label='',
+        widget=forms.Textarea(
+            attrs={'rows': '3',
+                   'placeholder': 'Say Something...'}
+        ))
+
+    image = forms.ImageField(required=False)
+
     class Meta:
-        model = RegistrarComment
+        model = ChairpersonPost
+        fields = ['body', 'image']
+
+class ChairpersonCommentForm(forms.ModelForm):
+    comment = forms.CharField(
+        label='',
+        widget=forms.Textarea(
+            attrs={'rows': '3',
+                   'placeholder': 'Say Something...'}
+        ))
+
+    class Meta:
+        model = ChairpersonComment
         fields = ['comment']

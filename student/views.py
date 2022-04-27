@@ -226,3 +226,99 @@ class RegistrarCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, Delete
     def test_func(self):
         comment = self.get_object()
         return self.request.user == comment.author
+
+
+#Chairperson Views
+class ChairpersonPostListView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        posts = ChairpersonPost.objects.all().order_by('-date')
+        form = ChairpersonPostForm()
+        
+        context = {
+            'chairperson': posts,
+            'form': form,
+        }
+
+        return render(request, 'home/chairperson.html', context)
+
+    def post(self, request, *args, **kwargs):
+        posts = ChairpersonPost.objects.all().order_by('-date')
+        form = ChairpersonPostForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            new_post = form.save(commit=False)
+            new_post.author = request.user
+            new_post.save()
+
+        context = {
+            'chairperson': posts,
+            'form': form,
+        }
+
+        return render(request, 'home/chairperson.html', context)
+
+class ChairpersonPostDetailView(LoginRequiredMixin, View):
+    def get(self, request, pk):
+        post = ChairpersonPost.objects.get(pk=pk)
+        form = ChairpersonCommentForm()
+        comments = ChairpersonComment.objects.filter(post=post).order_by('-date')
+
+        context = {
+            'post': post,
+            'form': form,
+            'comments': comments,
+        }
+        return render(request, 'home/chairperson_post_detail.html', context)
+
+    def post(self, request, pk, *args, **kwargs):
+        post = ChairpersonPost.objects.get(pk=pk)
+        form = ChairpersonCommentForm(request.POST)
+
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.author = request.user
+            new_comment.post = post
+            new_comment.save()
+        
+        comments = ChairpersonComment.objects.filter(post=post).order_by('-date')
+
+        context = {
+            'post': post,
+            'form': form,
+            'comments': comments,
+        }
+        return render(request, 'home/chairperson_post_detail.html', context)
+
+class ChairpersonPostEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = ChairpersonPost
+    fields = ['body']
+    template_name = 'home/chairperson_post_edit.html'
+    
+    def get_success_url(self):
+        pk = self.kwargs['pk']
+        return reverse_lazy('chairperson_post_detail', kwargs={'pk': pk})
+    
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author
+
+class ChairpersonPostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = ChairpersonPost
+    template_name = 'home/chairperson_post_delete.html'
+    success_url = reverse_lazy('chairperson')
+
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author
+
+class ChairpersonCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = ChairpersonComment
+    template_name = 'home/chairperson_comment_delete.html'
+
+    def get_success_url(self):
+        pk = self.kwargs['post_pk']
+        return reverse_lazy('chairperson_post_detail', kwargs={'pk': pk})
+
+    def test_func(self):
+        comment = self.get_object()
+        return self.request.user == comment.author

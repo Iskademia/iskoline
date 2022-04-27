@@ -36,6 +36,18 @@ class RegistrarComment(models.Model):
     post = models.ForeignKey('RegistrarPost', on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
+class ChairpersonPost(models.Model):
+    body = models.TextField()
+    date = models.DateTimeField(default=timezone.now)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='uploads/post_photos', blank=True, null=True)
+
+class ChairpersonComment(models.Model):
+    comment = models.TextField()
+    date = models.DateTimeField(default=timezone.now)
+    post = models.ForeignKey('ChairpersonPost', on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
