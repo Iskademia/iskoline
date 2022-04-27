@@ -6,7 +6,68 @@ from .forms import *
 from django.views.generic.edit import UpdateView, DeleteView
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 
+#Announcement Views
+class AnnouncementView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        posts = AnnouncementPost.objects.all().order_by('-date')
+        form = AnnouncementForm()
+        
+        context = {
+            'announcement': posts,
+            'form': form,
+        }
 
+        return render(request, 'home/announcement.html', context)
+
+    def post(self, request, *args, **kwargs):
+        posts = AnnouncementPost.objects.all().order_by('-date')
+        form = AnnouncementForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            new_post = form.save(commit=False)
+            new_post.author = request.user
+            new_post.save()
+
+        context = {
+            'announcement': posts,
+            'form': form,
+        }
+        return render(request, 'home/announcement.html', context)
+
+class AnnouncementPostDetailView(LoginRequiredMixin, View):
+    def get(self, request, pk):
+        post = AnnouncementPost.objects.get(pk=pk)
+
+        context = {
+            'post': post,
+        }
+        return render(request, 'home/announcement_post_detail.html', context)
+
+class AnnouncementPostEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = AnnouncementPost
+    fields = ['body']
+    template_name = 'home/announcement_post_edit.html'
+    
+    def get_success_url(self):
+        pk = self.kwargs['pk']
+        return reverse_lazy('announcement_post_detail', kwargs={'pk': pk})
+    
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author
+
+class AnnouncementPostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = AnnouncementPost
+    template_name = 'home/announcement_post_delete.html'
+    success_url = reverse_lazy('announcement')
+
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author
+
+
+
+#General Feed Views
 class PostListView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         posts = Post.objects.all().order_by('-date')
@@ -104,6 +165,7 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return self.request.user == comment.author
 
 
+#Profile Views
 class ProfileView(View):
     def get(self, request, pk, *args, **kwargs):
         profile = UserProfile.objects.get(pk=pk)
@@ -130,6 +192,7 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def test_func(self):
         profile = self.get_object()
         return self.request.user == profile.user
+
 
 
 #Registrar Views
@@ -226,6 +289,7 @@ class RegistrarCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, Delete
     def test_func(self):
         comment = self.get_object()
         return self.request.user == comment.author
+
 
 
 #Chairperson Views

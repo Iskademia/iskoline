@@ -1,6 +1,19 @@
 from django import forms
 from .models import *
 
+class AnnouncementForm(forms.ModelForm):
+    body = forms.CharField(
+        label='',
+        widget=forms.Textarea(
+            attrs={'rows': '3',
+                   'placeholder': 'Announce Something...'}
+        ))
+
+    image = forms.ImageField(required=False)
+
+    class Meta:
+        model = AnnouncementPost
+        fields = ['body', 'image']
 
 class PostForm(forms.ModelForm):
     body = forms.CharField(
