@@ -50,6 +50,10 @@ class RegistrarCommentForm(forms.ModelForm):
                    'placeholder': 'Say Something...'}
         ))
 
+    class Meta:
+        model = RegistrarComment
+        fields = ['comment']
+
 class ChairpersonPostForm(forms.ModelForm):
     body = forms.CharField(
         label='',
