@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-3 col-sm-6">
-            <a href="{% url 'post-list' %}" class="btn btn-light">Back to Feed</a>
+            <a href="{% url 'post_list' %}" class="btn btn-light">Back to Feed</a>
         </div>
     </div>
 
@@ -14,14 +14,14 @@
             <h3 class="py-7">{{ profile.name }}
                 <span>
                     {% if request.user == user %}
-                        <a href="{% url 'profile-edit' profile.pk %}" style="color: #000"><i class="far fa-edit"></i></a>
+                        <a href="{% url 'profile_edit' profile.pk %}" style="color: #000"><i class="far fa-edit"></i></a>
                     {% endif %}
                 </span>
                 {% else %}
                 <h3 class="py-7">{{ user.username }}
                     <span>
                         {% if request.user == user %}
-                            <a href="{% url 'profile-edit' profile.pk %}" style="color: #000"><i class="far fa-edit"></i></a>
+                            <a href="{% url 'profile_edit' profile.pk %}" style="color: #000"><i class="far fa-edit"></i></a>
                         {% endif %}
                     </span>
                 </h3>
@@ -51,7 +51,7 @@
                     <img src="{{ post.image.url }}" class="post-image"/>
                 {% endif %}
                     <p>{{ post.body }}</p>
-                    <a href="{% url 'post-detail' post.pk %}" class="stretched-link"></a>
+                    <a href="{% url 'post_detail' post.pk %}" class="stretched-link"></a>
                 </div>
         </div>
     </div>

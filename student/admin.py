@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Post, UserProfile
+from .models import *
 
 admin.site.register(Post)
 admin.site.register(UserProfile)
+admin.site.register(RegistrarPost)
+admin.site.register(ChairpersonPost)
