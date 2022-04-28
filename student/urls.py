@@ -23,4 +23,5 @@ urlpatterns = [
     path('announcement/<int:pk>/', AnnouncementPostDetailView.as_view(), name='announcement_post_detail'),
     path('announcement/edit/<int:pk>/', AnnouncementPostEditView.as_view(), name='announcement_post_edit'),
     path('announcement/delete/<int:pk>/', AnnouncementPostDeleteView.as_view(), name='announcement_post_delete'),
+    path('announcement/student/view', AnnouncementStudentView.as_view(), name='announcement_student_view'),
 ]

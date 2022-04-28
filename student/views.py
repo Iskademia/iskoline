@@ -34,6 +34,16 @@ class AnnouncementView(LoginRequiredMixin, View):
         }
         return render(request, 'home/announcement.html', context)
 
+class AnnouncementStudentView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        posts = AnnouncementPost.objects.all().order_by('-date')
+        
+        context = {
+            'announcement': posts,
+        }
+
+        return render(request, 'home/announcement_student_view.html', context)
+
 class AnnouncementPostDetailView(LoginRequiredMixin, View):
     def get(self, request, pk):
         post = AnnouncementPost.objects.get(pk=pk)
