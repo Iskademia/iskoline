@@ -6,6 +6,26 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link href="{% static 'style.css' %}" rel="stylesheet">
+    <script type="text/javascript">
+		var user = '{{request.user}}'
+
+		function getToken(name) {
+		let cookieValue = null;
+		if (document.cookie && document.cookie !== '') {
+		        const cookies = document.cookie.split(';');
+		        for (let i = 0; i < cookies.length; i++) {
+		            const cookie = cookies[i].trim();
+		            // Does this cookie string begin with the name we want?
+		            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+		                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+		                break;
+		            }
+		        }
+		    }
+		    return cookieValue;
+		}
+		const csrftoken = getToken('csrftoken');
+	</script>
 
 
     {% if title %}
@@ -24,6 +44,7 @@
                   <a class="list-group-item list-group-item-light" href="{% url 'chairperson' %}">Chairperson</a>
                   <a class="list-group-item list-group-item-light" href="#">Chat</a>
                   <a class="list-group-item list-group-item-light" href="#">Prof</a>
+                  <a class="list-group-item list-group-item-light" href="{% url 'logout' %}">Logout</a>
                 </ul>
             </div>
         <div class="col-md-8">
