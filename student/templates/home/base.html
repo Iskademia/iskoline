@@ -35,21 +35,25 @@
     {% endif %}
 </head>
 <body>
-    <div class="side-menu row">
-            <div class="sidebar">
-                <ul class="list-group">
-                  <a class="list-group-item list-group-item-light" href="{% url 'post_list' %}">Home</a>
-                  <a class="list-group-item list-group-item-light" href="{% url 'announcement' %}">Announcements</a>
-                  <a class="list-group-item list-group-item-light" href="{% url 'registrar' %}">Registrar</a>
-                  <a class="list-group-item list-group-item-light" href="{% url 'chairperson' %}">Chairperson</a>
-                  <a class="list-group-item list-group-item-light" href="#">Chat</a>
-                  <a class="list-group-item list-group-item-light" href="#">Prof</a>
-                  <a class="list-group-item list-group-item-light" href="{% url 'logout' %}">Logout</a>
-                </ul>
-            </div>
-        <div class="col-md-8">
-          {% block content %}{% endblock %}
+    
+    <nav class="navbar navbar-expand-lg justify-content-end bg-light">
+        <div class="logo">
+            <a href="#">Isko<span>line.</span></a>
         </div>
-    </div>
+        <div class="max-width">
+            <ul class="menu">
+                <li><a href="{% url 'post_list' %}">Home</a></li>
+                <li><a href="{% url 'announcement' %}">Announcements</a></li>
+                <li><a href="{% url 'registrar' %}">Registrar</a></li>
+                <li><a href="{% url 'chairperson' %}">Chairperson</a></li>
+                <li><a href="#">Chat</a></li>
+                <li><a href="#">Prof</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+        
+    {% block content %}{% endblock %}
+        
 </body>
 </html>
