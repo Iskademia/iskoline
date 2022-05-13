@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row justify-content-center mt-3">
             <div class="post col-md-5 col-sm-12">
-                <h5>Add a Post!</h5>
+                <h5>What's your concern?</h5>
             </div>
         </div>
         <div class="row justify-content-center mt-3 mb-5">
@@ -21,15 +21,17 @@
         </div>
         {% for post in post_list %}
         <div class="row justify-content-center mt-3">
-            <div class="col-md-10 col-sm-12 border-bottom position-relative">
+            <div class="post-body col-md-10 col-sm-12 position-relative">
                 <div>
                     <img class="rounded-circle post-img" height="50" width="50" src="{{ post.author.profile.picture.url }}" />
                     <a class="profile-link" href="{% url 'profile' post.author.profile.pk %}">{{ post.author }}</a> {{ post.date | date:"F d, Y"}}
                 </div>
-                <div class="position-relative">
+                <div class="post-content position-relative">
                     <p>{{ post.body }}</p>
                     {% if post.image %}
-                    <img src="{{ post.image.url }}" class="post-image" />
+                    <div class="image">
+                        <img src="{{ post.image.url }}" class="post-image" />
+                    </div>
                     {% endif %}
                     <a class="stretched-link" href="{% url 'post_detail' post.pk %}"></a>
                 </div>

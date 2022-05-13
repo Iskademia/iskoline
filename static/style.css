@@ -3,7 +3,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    text-decoration: none;
 }
 
 html{
@@ -12,6 +11,7 @@ html{
 
 body {
     overflow-x: hidden;
+    
 }
 /* custom scroll bar */
 ::-webkit-scrollbar {
@@ -32,10 +32,43 @@ body {
     display: flex;
     flex-direction: column;
 }
+.logo{
+    max-width: 50px;
+    max-height: 50px;
+}
+/*
+nav .navbar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+    background-color: #5d4954;
+    color: white;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar .menu{
+    display: flex;
+}
+
+.menu a{
+    color: white;
+    margin: 10px;
+}
+
+.burger{
+    display: none;
+    color: white;
+}
 
 .navbar{
     position: fixed;
-    height: 100px;
+    height: 90px;
     width: 100%; 
     padding: 30px 0;
     padding-bottom: 12px;
@@ -71,8 +104,19 @@ body {
     text-decoration: none;
 }
 
+.navbar .menu li a:active{
+    color: crimson;
+    text-decoration: none;
+}
+
+
+
 .navbar .logo a{
-    color: #111;
+    text-decoration: none;
+}
+
+.navbar .logo a{
+    color: crimson;
     font-size: 35px;
     font-weight: 600;
 }
@@ -87,24 +131,61 @@ body {
 }
 
 
+.burger div{
+    width: 25px;
+    height: 2px;
+    background-color: black;
+    margin: 5px;
+    color: black;
+}
+*/
+
 .body{
     height: 100vh;
     color: #111;
     min-height: 500px;
 }
-
 .post{
     margin-top: 100px;
 }
 
+/* style for posts */
+.post-body {
+    padding-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    box-shadow: 0 3px 0 gray;
+}
+.post-content{
+    margin-top: 15px;
+}
 .post-image{
-    max-width: 50%;
+    max-width:100%;
     height: auto;
     border-radius: 10px;
     margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .profile-link{
     font-size: x-large;
     color: black;
+}
+
+@media (max-width: 768){
+    .menu {
+        position: absolute;
+        right: 0px;
+        height: 92vh;
+        top: 8vh;
+        background-color: #5d4954;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform: translateX(100%);
+    }
 }
