@@ -28,13 +28,19 @@
                 {% endif %}
             </h3>
 
+            {% if profile.gender %}
+            <p>{{ profile.gender }}</p>
+            {% endif %}
+
+            {% if profile.age %}
+            <p>{{ profile.age }}</p>
+            {% endif %}
+
             {% if profile.location %}
             <p>{{ profile.location }}</p>
             {% endif %}
 
-            {% if profile.birth_date %}
-            <p>{{ profile.birth_date }}</p>
-            {% endif %}
+            
 
             {% if profile.bio %}
             <p>{{ profile.bio }}</p>
