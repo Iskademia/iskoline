@@ -1,12 +1,121 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from .models import *
 from .forms import *
 from django.views.generic.edit import UpdateView, DeleteView
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from .forms import CreateUserForm
+
+#Login
+def loginPage(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('post_list')
+        else:
+            messages.info(request, 'Username or Password is incorrect')
+
+    context = {}
+    return render(request, 'home/login.html', context)
+
+#Register
+def registerPage(request):
+    if request.user.is_authenticated:
+        return redirect('post_list')
+    form = CreateUserForm()
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            return redirect('login')
+    context = {'form':form}
+    return render(request, 'home/register.html', context)
+
+def logoutUser(request):
+	logout(request)
+	return redirect('login')
+
+#Announcement Views
+class AnnouncementView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        posts = AnnouncementPost.objects.all().order_by('-date')
+        form = AnnouncementForm()
+        
+        context = {
+            'announcement': posts,
+            'form': form,
+        }
+
+        return render(request, 'home/announcement.html', context)
+
+    def post(self, request, *args, **kwargs):
+        posts = AnnouncementPost.objects.all().order_by('-date')
+        form = AnnouncementForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            new_post = form.save(commit=False)
+            new_post.author = request.user
+            new_post.save()
+
+        context = {
+            'announcement': posts,
+            'form': form,
+        }
+        return render(request, 'home/announcement.html', context)
+
+class AnnouncementStudentView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        posts = AnnouncementPost.objects.all().order_by('-date')
+        
+        context = {
+            'announcement': posts,
+        }
+
+        return render(request, 'home/announcement_student_view.html', context)
+
+class AnnouncementPostDetailView(LoginRequiredMixin, View):
+    def get(self, request, pk):
+        post = AnnouncementPost.objects.get(pk=pk)
+
+        context = {
+            'post': post,
+        }
+        return render(request, 'home/announcement_post_detail.html', context)
+
+class AnnouncementPostEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = AnnouncementPost
+    fields = ['body']
+    template_name = 'home/announcement_post_edit.html'
+    
+    def get_success_url(self):
+        pk = self.kwargs['pk']
+        return reverse_lazy('announcement_post_detail', kwargs={'pk': pk})
+    
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author
+
+class AnnouncementPostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = AnnouncementPost
+    template_name = 'home/announcement_post_delete.html'
+    success_url = reverse_lazy('announcement')
+
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author
 
 
+
+#General Feed Views
 class PostListView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         posts = Post.objects.all().order_by('-date')
@@ -37,37 +146,39 @@ class PostListView(LoginRequiredMixin, View):
 
 class PostDetailView(LoginRequiredMixin, View):
     def get(self, request, pk):
-        post = Post.objects.get(pk=pk)
-        form = CommentForm()
-        comments = Comment.objects.filter(post=post).order_by('-date')
+            post = Post.objects.get(pk=pk)
+            form = CommentForm()
+            comments = Comment.objects.filter(post=post).order_by('-date')
 
-        context = {
-            'post': post,
-            'form': form,
-            'comments': comments,
-        }
+            context = {
+                'post': post,
+                'form': form,
+                'comments': comments,
+            }
 
-        return render(request, 'home/post_detail.html', context)
+            return render(request, 'home/post_detail.html', context)
 
     def post(self, request, pk, *args, **kwargs):
-        post = Post.objects.get(pk=pk)
-        form = CommentForm(request.POST)
+        if request.user.is_authenticated:
+            user = request.user.profile
+            post = Post.objects.get(pk=pk)
+            form = CommentForm(request.POST)
 
-        if form.is_valid():
-            new_comment = form.save(commit=False)
-            new_comment.author = request.user
-            new_comment.post = post
-            new_comment.save()
-        
-        comments = Comment.objects.filter(post=post).order_by('-date')
+            if form.is_valid():
+                new_comment = form.save(commit=False)
+                new_comment.author = request.user
+                new_comment.post = post
+                new_comment.save()
+            
+            comments = Comment.objects.filter(post=post).order_by('-date')
 
-        context = {
-            'post': post,
-            'form': form,
-            'comments': comments,
-        }
+            context = {
+                'post': post,
+                'form': form,
+                'comments': comments,
+            }
 
-        return render(request, 'home/post_detail.html', context)
+            return render(request, 'home/post_detail.html', context)
 
 class PostEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
@@ -104,6 +215,7 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return self.request.user == comment.author
 
 
+#Profile Views
 class ProfileView(View):
     def get(self, request, pk, *args, **kwargs):
         profile = UserProfile.objects.get(pk=pk)
@@ -120,7 +232,7 @@ class ProfileView(View):
 
 class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = UserProfile
-    fields = ['name', 'bio', 'birth_date', 'location', 'picture']
+    fields = ['name', 'bio', 'gender', 'birth_date', 'location', 'picture']
     template_name = 'home/profile_edit.html'
 
     def get_success_url(self):
@@ -130,6 +242,7 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def test_func(self):
         profile = self.get_object()
         return self.request.user == profile.user
+
 
 
 #Registrar Views
@@ -226,6 +339,7 @@ class RegistrarCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, Delete
     def test_func(self):
         comment = self.get_object()
         return self.request.user == comment.author
+
 
 
 #Chairperson Views

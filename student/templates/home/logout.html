@@ -1,0 +1,22 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-3 col-sm-6">
+            <a href="{% url 'post_list' %}" class="btn btn-light">Cancel</a>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10 col-sm-12">
+            <h5>Are you sure you want to logout?</h5>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </div>
+        </form>
+    </div>
+    </div>
+</div>
+{% endblock content %}
