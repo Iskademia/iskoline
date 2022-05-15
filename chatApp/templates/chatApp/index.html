@@ -16,7 +16,7 @@
 	<!-- {% else %} -->
 	<!-- <link rel="icon" href="{% static '/image/favicon.ico' %}" type="image/x-icon"> -->
 	<!-- {% endif %} -->
-	<title>Chat</title>
+	<title>{% block title %}{% endblock %}</title>
 </head>	
 {% block content %}
 {% endblock %}

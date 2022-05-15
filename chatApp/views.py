@@ -16,22 +16,22 @@ from .forms import *
 from .models import *
 
 
-# Create your views here.
+# # Create your views here.
 
-def Chat(request):
-    # if request.user.is_authenticated:
-    #     return redirect('index')
-    return render(request, 'chatApp/index.html')
+# def Chat(request):
+#     # if request.user.is_authenticated:
+#     #     return redirect('index')
+#     return render(request, 'chatApp/index.html')
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def Index(request):
     randROOM = None
     rooms = Rooms.objects.filter(user=request.user)
     if request.method == "POST":
         randROOM = str(uuid.uuid4().hex)
     context = {'randROOM': randROOM, 'rooms': rooms}
-    return render(request, 'chats/dashboard.html', context)
+    return render(request, 'chatApp/dashboard.html', context)
 
 
 @login_required(login_url='login')
@@ -66,7 +66,7 @@ def Room(request, room_name):
     messages = Message.objects.filter(room=room_name)[0:]
     return render(
         request,
-        'chats/room.html',
+        'chatApp/room.html',
         {
             'room_name': room_name,
             'username': username,
