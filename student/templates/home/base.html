@@ -17,35 +17,39 @@
     {% endif %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    
-        <div class="collapse navbar-collapse" id="collapse_target">
-            <a class="navbar-brand" href="{% url 'post_list' %}"><img class="logo" src="../media/black-logo.png" ></a>
-            <a class="navbar-text" href="{% url 'post_list' %}">Iskoline.</a>
-        </div>
-        <div class="collapse navbar-collapse" id="collapse_target">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="{% url 'post_list' %}">General Feed</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown-target" href="#">Departments
-                        <span class="caret"></span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown_target">
-                        
-                        <a class="dropdown-item" href="{% url 'registrar' %}" >Registrar</a>
-                        <a class="dropdown-item" href="{% url 'chairperson' %}" >Chairperson</a>
-                    </div>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'announcement' %}" >Announcements</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Chat</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'profile' user.profile.pk %}" >Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" >Logout</a></li>
-            </ul>
-        </div>
-    </nav>
+
+    <div class="navbar1">
+        <nav class="navbar navbar-expand-md navbar-dark sticky-top">
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="collapse_target">
+                <a class="navbar-brand" href="{% url 'post_list' %}"><img class="logo" src={% static "../media/ISKOLINE_LOGO.png" %} ></a>
+                <a class="navbar-text" href="{% url 'post_list' %}">ISKOLINE</a>
+            </div>
+
+            <div class="collapse navbar-collapse"  id="collapse_target">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'post_list' %}">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown-target" href="#">Departments
+                            <span class="caret"></span>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdown_target">
+                            <a class="dropdown-item" href="{% url 'registrar' %}">Registrar</a>
+                            <a class="dropdown-item" href="{% url 'chairperson' %}">Chairperson</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'announcement' %}">Announcements</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Chat</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'profile' user.profile.pk %}">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
         
     {% block content %}{% endblock %}
         
