@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,6 +49,6 @@
     </nav>
         
     {% block content %}{% endblock %}
-        
+    <script src="{% static 'index.js' %}"></script>
 </body>
 </html>
