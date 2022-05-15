@@ -1,4 +1,4 @@
-{% extends 'chats/base.html' %} 
+{% extends 'chatApp/index.html' %} 
 {% load static %} 
 {% block title %} 
 Room || {{room_name}} 
@@ -6,11 +6,11 @@ Room || {{room_name}}
 {% block content %}
 <header>
   <div class="navbar">
-    <a href="{% url 'index' %}"
+    <a href="{% url 'chatindex' %}"
       ><img src="{% static 'image/new.png' %}" alt="Logo"
     /></a>
     <ul class="nav-links">
-      <a href="{% url 'index' %}">Dashboard</a>
+      <a href="{% url 'chatindex' %}">Dashboard</a>
       <a href="{% url 'saveroom' %}">Save Room</a>
       <a href="{% url 'logout' %}">Logout</a>
     </ul>

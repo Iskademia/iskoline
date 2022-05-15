@@ -1,0 +1,51 @@
+{% extends 'chatApp/index.html' %} {% load static %} {% block title %} Iskoline ||
+Dashboard {% endblock %} {% block content %}
+<header>
+  <div class="navbar">
+    <a href="{% url 'chatindex' %}"
+      ><img src="{% static 'image/new.png' %}" alt="Logo"
+    /></a>
+    <ul class="nav-links">
+      <a href="{% url 'enterroom' %}">Enter a Room</a>
+      <a href="{% url 'saveroom' %}">Save Room</a>
+      <a href="{% url 'logout' %}">{{request.user}}, Logout</a>
+    </ul>
+  </div>
+</header>
+<body>
+  <section>
+    <div class="dashboard">
+      <div class="roomlist">
+        {% for room in rooms %}
+          <a href="{% url 'room' room.rooms %}"
+            ><div class="room">
+              <h4 style="text-transform: uppercase">{{room.roomname}}</h4>
+              <h5>{{room.rooms}}</h5>
+              <a href="{% url 'update' room.rndid %}">Update</a>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+      <div class="generate">
+        <form method="post" action="">
+          {% csrf_token %}
+          <label>Generate a Random Room</label>
+          {% if randROOM == None %}
+            <h3></h3>
+          {% else %}
+            <h4>{{randROOM}}</h4>
+          {% endif %}
+          <button type="submit" class="btn-links" name="generate">
+          Generate
+          </button>
+        </form>
+        {% if randROOM == None %}
+          <h3></h3>
+        {% else %}
+          <a href="{% url 'room' randROOM  %}">Go to the Room</a>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+</body>
+{% endblock %}
