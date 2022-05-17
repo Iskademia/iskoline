@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from sqlalchemy import false
 
 class Post(models.Model):
     body = models.TextField()
@@ -35,6 +36,7 @@ class UserProfile(models.Model):
         ('Female', 'Female'),
     )
     gender = models.CharField(max_length=6, blank=True, null=True ,choices=GENDER_CHOICES)
+    student_id = models.CharField(max_length=16, blank=False, null=True)
 
 class RegistrarPost(models.Model):
     body = models.TextField()
