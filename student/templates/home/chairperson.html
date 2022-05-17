@@ -12,7 +12,19 @@
             <div class="col-md-5 col-sm-12">
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form | crispy }}
+                    <div class="username">
+                        <label>Body: </label>
+                        <textarea name="body"></textarea>
+                        <!-- {{form.description}} -->
+                      </div>
+                      <div class="username">
+                        <label>Upload image: </label>
+                        <input type="file" name="image" />
+                        <!-- {{form.post_image}} -->
+                      </div>
+                      <div class="d-grid gap-2">
+                        <button class="btn btn-success mt-3">Submit!</button>
+                      </div>
                     <div class="d-grid gap-2">
                         <button class="btn btn-success mt-3">Submit!</button>
                     </div>

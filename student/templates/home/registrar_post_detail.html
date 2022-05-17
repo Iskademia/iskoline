@@ -36,7 +36,10 @@
         <div class="col-md-5 col-sm-12">
             <form method="POST">
                 {% csrf_token %}
-                {{ form | crispy }}
+                <div class="username">
+                    <textarea name="comment"></textarea>
+                    <!-- {{form.description}} -->
+                </div>
                 <div class="d-grid gap-2">
                     <button class="btn btn-success mt-3">Submit!</button>
                 </div>
