@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from sqlalchemy import false
+# from sqlalchemy import false
 
 class Post(models.Model):
     body = models.TextField()
