@@ -3,12 +3,8 @@ from .views import *
 from . import views
 
 urlpatterns = [
-<<<<<<< HEAD
     path('', views.LandingPage, name='index'),
-    path('post_list', PostListView.as_view(), name='post_list'),
-=======
-    path('', views.PostFeed, name='post_list'),
->>>>>>> e68a79db7a8daf6df6cc1ed79cc1b1976a69f54a
+    path('post_list', views.PostFeed, name='post_list'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post_detail'),
     path('post/edit/<int:pk>/', PostEditView.as_view(), name='post_edit'),
     path('post/delete/<int:pk>/', PostDeleteView.as_view(), name='post_delete'),
