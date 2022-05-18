@@ -36,6 +36,9 @@ body {
     max-width: 50px;
     max-height: 50px;
 }
+.navbar-nav{
+    transform: translateX(50%);
+}
 /*
 nav .navbar{
     display: flex;
