@@ -1,0 +1,51 @@
+{% extends 'chatApp/index.html' %}
+{% load static %}
+{% block title %}
+	Iskoline || Enter Room
+{% endblock %}
+{% block content %}
+	<header>
+		<div class="navbar">
+			<ul class="nav-links">
+                <a href="{% url 'post_list' %}"
+                ><img src="{% static '/images/ISKOLINE_LOGO.png' %}" alt="Logo"
+                /></a>
+				<a href="{% url 'post_list' %}">News Feed</a>
+				<a href="{% url 'saveroom' %}">Save Room</a>
+				<a href="{% url 'logout' %}">Logout</a>
+			</ul>
+		</div>
+	</header>
+	<body>
+		<section>
+			<div class="enter-room">
+				<div class="roomlist">
+					{% for room in rooms %}
+						<a href="{% url 'room' room.rooms %}"
+							><div class="room">
+								<h4  style="text-transform:uppercase;">{{room.roomname}}</h3>
+								<h5>{{room.rooms}}</h5>
+								<a href="{% url 'update' room.rndid %}">Update</a>
+							</div>
+						</a>
+					{% endfor %}
+				</div>
+				<div class="enter">
+					<form method="post" action="">
+						{% csrf_token %}
+						<label>Enter a Room</label>
+						<div class="username">
+							<input
+							type="text"
+							name="roomName"
+							placeholder="Room Code"
+							required
+							/>
+						</div>
+						<button type="submit">Enter</button>
+					</form>
+				</div>
+			</div>
+		</section>
+	</body>
+{% endblock %}

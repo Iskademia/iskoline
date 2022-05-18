@@ -1,0 +1,38 @@
+{% extends 'chatApp/index.html' %}
+{% load static %}
+{% block title %}
+	Iskoline || Update
+{% endblock %}
+{% block content %}
+	<body>
+		<section>
+			<div class="goback">
+			  <a href="{% url 'chatindex' %}">Go back</a>
+			</div>
+			<div class="update-wrapper">
+			  <div class="update-card">
+				<form action="" method="POST">
+				  <label>Room Details</label>
+				  {% csrf_token %}
+				  <div class="username">
+					<label>Room Name: </label>
+					{{rooms.roomname}}
+				  </div>
+				  <div class="username">
+					<label>Room Code: </label>
+					{{rooms.rooms}}
+				  </div>
+				  <div class="username">
+					<label>Description: </label>
+					{{rooms.description}}
+				  </div>
+				  <div>
+					<button type="submit">Update </button>
+					<a href="{% url 'delete' randid %}">Delete</a>
+				  </div>
+				</form>
+			  </div>
+			</div>
+		  </section>
+	</body>
+{% endblock %}
