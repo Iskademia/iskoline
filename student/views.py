@@ -10,6 +10,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import CreateUserForm
 
+from django.contrib.auth.decorators import login_required
+
 #Login
 def loginPage(request):
     if request.method == 'POST':
@@ -116,33 +118,21 @@ class AnnouncementPostDeleteView(LoginRequiredMixin, UserPassesTestMixin, Delete
 
 
 #General Feed Views
-class PostListView(LoginRequiredMixin, View):
-    def get(self, request, *args, **kwargs):
-        posts = Post.objects.all().order_by('-date')
-        form = PostForm()
-        
-        context = {
-            'post_list': posts,
-            'form': form,
-        }
-
-        return render(request, 'home/post_list.html', context)
-
-    def post(self, request, *args, **kwargs):
-        posts = Post.objects.all().order_by('-date')
+@login_required(login_url="login")
+def PostFeed(request):
+    posts = Post.objects.all().order_by('-date')
+    form = PostForm()
+    if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
-
         if form.is_valid():
-            new_post = form.save(commit=False)
-            new_post.author = request.user
-            new_post.save()
-
-        context = {
+            form.save(commit=False).author = request.user
+            form.save()
+        return redirect("post_list")
+    context = {
             'post_list': posts,
             'form': form,
         }
-
-        return render(request, 'home/post_list.html', context)
+    return render(request, "home/post_list.html", context)
 
 class PostDetailView(LoginRequiredMixin, View):
     def get(self, request, pk):
@@ -232,7 +222,7 @@ class ProfileView(View):
 
 class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = UserProfile
-    fields = ['name', 'bio', 'gender', 'birth_date', 'location', 'picture']
+    fields = ['name', 'bio', 'gender', 'birth_date', 'location', 'picture', 'student_id']
     template_name = 'home/profile_edit.html'
 
     def get_success_url(self):

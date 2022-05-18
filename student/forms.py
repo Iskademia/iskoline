@@ -24,26 +24,26 @@ class AnnouncementForm(forms.ModelForm):
         fields = ['body', 'image']
 
 class PostForm(forms.ModelForm):
-    body = forms.CharField(
-        label='',
-        widget=forms.Textarea(
-            attrs={'rows': '3',
-                   'placeholder': 'Say Something...'}
-        ))
+    # body = forms.CharField(
+    #     label='',
+    #     widget=forms.Textarea(
+    #         attrs={'rows': '3',
+    #                'placeholder': 'Say Something...'}
+    #     ))
 
-    image = forms.ImageField(required=False)
+    # image = forms.ImageField(required=False)
 
     class Meta:
         model = Post
         fields = ['body', 'image']
 
 class CommentForm(forms.ModelForm):
-    comment = forms.CharField(
-        label='',
-        widget=forms.Textarea(
-            attrs={'rows': '3',
-                   'placeholder': 'Say Something...'}
-        ))
+    # comment = forms.CharField(
+    #     label='',
+    #     widget=forms.Textarea(
+    #         attrs={'rows': '3',
+    #                'placeholder': 'Say Something...'}
+    #     ))
 
     class Meta:
         model = Comment
