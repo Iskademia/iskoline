@@ -6,11 +6,14 @@
 }
 body {
     overflow-x: hidden;
+    background: url("../media/login-bg.jpg") no-repeat center !important;
+    background-size: cover !important;
 }
 .container{
     display: flex;
     height: 100vh;
     width: 100vw;
+    
 }
 .iskoline-info{
     border-right: black 1px solid;
@@ -18,28 +21,30 @@ body {
     height: 100vh;
 }
 .user_card {
-    width: 350px;
+    width: 100%;
     margin-top: auto;
     margin-bottom: auto;
     position: relative;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 10px;
-    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
-    border-radius: 5px;
     height: 100vh;
     width: 30vw;
+    background-color: rgb(255, 255, 255); /* Fallback color */
+    background-color: rgba(255, 253, 253, 0.4); /* Black w/opacity/see-through */
+    color: black;
+
+    backdrop-filter: blur(8px);
 }
 .form_container {
     margin-top: 20px;
 }
 
 #form-title{
-    color: #FF0000;
+    color: maroon;
     font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+
 }
 
 .login_btn {
@@ -67,12 +72,16 @@ body {
     margin-top: 10px;
 }
 .logo-img{
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
     position: relative;
 }
 .form-control{
     border: none !important;
     border-radius: 50px !important;
     border-bottom: black 0.5px solid !important;
+}
+.mt-4 a{
+    color: maroon;
+    text-decoration: none;
 }
