@@ -1,0 +1,26 @@
+{% extends 'chatApp/index.html' %}
+{% load static %} 
+{% block title %} 
+Iskoline || Delete 
+{% endblock %} 
+{% block content %}
+
+<body>
+  <section>
+    <div class="update-wrapper">
+      <div class="update-card">
+        <form action="" method="POST">
+          {% csrf_token %}
+          <label>Delete a Room</label>
+          <h2>{{room.roomname}}</h2>
+          <h3>{{room.rooms}}</h3>
+          <div>
+            <button type="submit">Confirm</button>
+            <a href="{% url 'update' randid %}">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</body>
+{% endblock %}

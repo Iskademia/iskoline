@@ -1,0 +1,58 @@
+{% extends 'chatApp/index.html' %}
+{% load static %}
+{% block title %}
+	Iskoline || Room Save
+{% endblock %}
+{% block content %}
+	<header>
+		<div class="navbar">
+			<ul class="nav-links">
+                <a href="{% url 'post_list' %}"
+                ><img src="{% static '/images/ISKOLINE_LOGO.png' %}" alt="Logo"
+                /></a>
+				<a href="{% url 'post_list' %}">News Feed</a>
+				<a href="{% url 'enterroom' %}">Enter a Room</a>
+				<a href="{% url 'logout' %}">Logout</a>
+			</ul>
+		</div>
+	</header>
+	<body>
+		<section>
+			<div class="save-room">
+				<div class="roomlist">
+					{% for room in rooms %}
+						<a href="{% url 'room' room.rooms %}">
+							<div class="room">
+								<h4  style="text-transform:uppercase;">{{room.roomname}}</h3>
+								<h5>{{room.rooms}}</h5>
+								<a href="{% url 'update' room.rndid %}">Update</a>
+							</div>
+						</a>
+					{% endfor %}
+				</div>
+				<div class="save">
+					<form action="" method="POST">
+						{% csrf_token %}
+						<h2>Save a Room</h2>
+						<div class="username">
+							<label>Room Name: </label>
+							{{form.roomname}}
+						</div>
+						<div class="username">
+							<label>Room Code: </label>
+							{{form.rooms}}
+						</div>
+						<div class="username">
+							<label>Description: </label>
+							{{form.description}}
+						</div>
+						<div>
+							<button type="submit">Save</button>
+							<button type="reset">Reset</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+	</body>
+{% endblock %}

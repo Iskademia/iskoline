@@ -2,10 +2,11 @@
 Dashboard {% endblock %} {% block content %}
 <header>
   <div class="navbar">
-    <a href="{% url 'chatindex' %}"
-      ><img src="{% static 'image/new.png' %}" alt="Logo"
-    /></a>
     <ul class="nav-links">
+      <a href="{% url 'post_list' %}"
+      ><img src="{% static '/images/ISKOLINE_LOGO.png' %}" alt="Logo"
+    /></a>
+      <a href="{% url 'post_list' %}">News Feed</a>
       <a href="{% url 'enterroom' %}">Enter a Room</a>
       <a href="{% url 'saveroom' %}">Save Room</a>
       <a href="{% url 'logout' %}">{{request.user}}, Logout</a>
