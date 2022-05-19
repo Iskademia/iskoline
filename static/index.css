@@ -8,24 +8,30 @@
 }
 
 html {
+  background-image: url('images/chatbg1ver2.png');
+  background-size: 100%;
   background-color: #cadbe2;
   height: relative;
 }
+
+/* body {
+
+} */
 
 .navbar {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 1rem;
+  /* padding: 1rem; */
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  margin: 1rem;
-  border-radius: 20px;
-  background: rgba(19, 30, 51, 0.15);
+  /* margin: 1rem; */
+  /* border-radius: 20px; */
+  background: rgba(255, 255, 255, 0.995);
   -webkit-box-shadow: 0 8px 20px 0 rgba(63, 63, 68, 0.37);
   box-shadow: 0 8px 20px 0 rgba(63, 63, 68, 0.37);
   backdrop-filter: blur(16px);
@@ -35,16 +41,48 @@ html {
 .navbar img {
   margin-top: 0.5rem;
   margin-left: 2rem;
-  height: 40px;
-  width: 40px;
+  height: 95px;
+  width: 190px;
+}
+
+.nav-links{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-links a {
   padding-right: 1rem;
   text-decoration: none;
-  color: #000000;
+  color: #FF0000;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 22px;
+}
+
+/* .nav-links a:hover {
+  color: #cadbe2;
+} */
+
+.navbar-links {
+  /* padding-left: 500px; */
+  padding-top: 27px;
+  /* float: right; */
+  /* transform: translateX(20%); */
+}
+
+.navbar-text2 h1:hover{
+  color: #000;
+}
+.navbar-text1  {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+  /* color: CF0000; */
+  background: -webkit-linear-gradient(right, #FF0000, #9F0606);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 section {
@@ -653,9 +691,10 @@ a:hover {
   .navbar p {
     display: none;
   }
-  .main img {
-    width: 250px;
-    height: 80px;
+  .nav-links img {
+    height: 120px;
+    width: 195px;
+    margin-left: 105px;
   }
   .register {
     margin-top: 2rem;
@@ -686,8 +725,8 @@ a:hover {
   .nav-links a {
     padding-right: 10px;
     text-decoration: none;
-    color: #000000;
-    font-weight: 400;
+    color: #9F0606;
+    font-weight: 600;
     font-size: 15px;
   }
   .roomlist {

@@ -41,7 +41,7 @@ def EnterRoom(request):
         roomName = request.POST['roomName']
         return redirect('chat/{}'.format(roomName))
 
-    return render(request, 'chats/gotoroom.html', {'rooms': rooms})
+    return render(request, 'chatApp/gotoroom.html', {'rooms': rooms})
 
 
 @login_required(login_url='login')
@@ -53,9 +53,9 @@ def SaveRoom(request):
         if roomform.is_valid():
             roomform.save(commit=False).user = request.user
             roomform.save()
-        return redirect("index")
+        return redirect("chatindex")
     context = {'form': roomform, 'rooms': rooms}
-    return render(request, 'chats/savedroom.html', context)
+    return render(request, 'chatApp/savedroom.html', context)
 
 
 @login_required(login_url='login')
@@ -85,8 +85,8 @@ def UpdateRoom(request, pk):
         if roomform.is_valid():
             roomform.save(commit=False).user = request.user
             roomform.save()
-        return redirect('index')
-    return render(request, 'chats/update.html', {'rooms': roomform, 'randid': pk})
+        return redirect('chatindex')
+    return render(request, 'chatApp/update.html', {'rooms': roomform, 'randid': pk})
 
 
 @login_required(login_url='login')
@@ -97,6 +97,6 @@ def DeleteRoom(request, pk):
     if request.method == 'POST':
         room.delete()
         messages.delete()
-        return redirect('index')
+        return redirect('chatindex')
 
-    return render(request, 'chats/delete.html', {'room': room, 'randid': pk})
+    return render(request, 'chatApp/delete.html', {'room': room, 'randid': pk})
