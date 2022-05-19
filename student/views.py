@@ -426,3 +426,8 @@ class ChairpersonCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, Dele
     def test_func(self):
         comment = self.get_object()
         return self.request.user == comment.author
+
+def LandingPage(request):
+    context = {
+    }
+    return render(request, 'home/index.html', context)

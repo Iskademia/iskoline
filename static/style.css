@@ -33,8 +33,11 @@ body {
     flex-direction: column;
 }
 .logo{
-    max-width: 120px;
-    max-height: 120px;
+    max-width: 180px;
+    max-height: 180px;
+}
+.navbar-nav{
+    transform: translateX(25%);
 }
 /*
 nav .navbar{
@@ -189,13 +192,12 @@ ul {
         transform: translateX(100%);
     }
 }
-
 .navbar1
 {
     background-color: #ffffff;
     /* background-color: #111; */
     font-family: 'Poppins';
-    font-size: larger;
+    font-size: 18px;
     border: 1px solid lightgray;
     border-radius: 3px;
     box-shadow: 0 3px 0 gray;
@@ -208,17 +210,8 @@ ul {
     /* color: CF0000; */
     background: -webkit-linear-gradient(right, #FF0000, #9F0606);
     -webkit-background-clip: text;
+            background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-
-/* .nav-item
-{
-    padding-left: 20px;
-} */
-
-.navbar-nav
-{
-    padding-left: 200px;
 }
 
 .nav-item a
@@ -232,3 +225,8 @@ ul {
 {
     background-color: rgb(235, 235, 235);
 } 
+
+a:hover {
+    opacity: 0.5;
+}
+
