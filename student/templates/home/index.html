@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'landing_page.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-container">
+                <img class="logo" src="../media/logo.png">
+                <h1>ISKOLINE</h1>
+            </div>
+            <div class="buttons">
+                <button class="login"><a href="{% url 'login' %}">Login</a></button>
+                <button class="register"><a href="{% url 'register' %}">Register</a></button>
+            </div>
+        </div>
+        <div class="body">
+            <div class="iskoline">
+                <h2>ISKOLINE: PARA SA ISKOLAR NG BAYAN</h2>
+            </div>
+            <div class="iskoline-info">
+                <div><img src="../media/iskoline.png" class="iskoline-logo" alt="iskoline-image"></div>
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet. Est illo amet cum suscipit soluta 33 molestiae officiis maiores facilis est expedita laudantium. Cum ducimus dolorum aut omnis repudiandae est iure laborum ut quidem voluptates in deserunt quis et consequatur perferendis.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

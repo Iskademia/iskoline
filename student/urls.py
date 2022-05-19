@@ -5,7 +5,8 @@ from .views import *
 from . import views
 
 urlpatterns = [
-    path('', views.PostFeed, name='post_list'),
+    path('', views.LandingPage, name='index'),
+    path('post_list', views.PostFeed, name='post_list'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post_detail'),
     path('post/edit/<int:pk>/', PostEditView.as_view(), name='post_edit'),
     path('post/delete/<int:pk>/', PostDeleteView.as_view(), name='post_delete'),

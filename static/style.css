@@ -36,6 +36,9 @@ body {
     max-width: 180px;
     max-height: 180px;
 }
+.navbar-nav{
+    transform: translateX(25%);
+}
 /*
 nav .navbar{
     display: flex;
@@ -189,7 +192,6 @@ ul {
         transform: translateX(100%);
     }
 }
-
 .navbar1
 {
     background-color: #ffffff;
@@ -208,17 +210,8 @@ ul {
     /* color: CF0000; */
     background: -webkit-linear-gradient(right, #FF0000, #9F0606);
     -webkit-background-clip: text;
+            background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-
-/* .nav-item
-{
-    padding-left: 20px;
-} */
-
-.navbar-nav
-{
-    padding-left: 200px;
 }
 
 .nav-item a
