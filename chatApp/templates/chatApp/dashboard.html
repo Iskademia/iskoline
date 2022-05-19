@@ -1,19 +1,36 @@
 {% extends 'chatApp/index.html' %} {% load static %} {% block title %} Iskoline ||
 Dashboard {% endblock %} {% block content %}
 <header>
-  <div class="navbar">
-    <ul class="nav-links">
-      <a href="{% url 'post_list' %}"
-      ><img src="{% static '/images/ISKOLINE_LOGO.png' %}" alt="Logo"
-    /></a>
-      <a href="{% url 'post_list' %}">News Feed</a>
+  <!-- <div class="navbar">
+    <div class="navbar-text1">
+      <a href="{% url 'post_list' %}">
+      <img src="{% static '/images/ISKOLINE_LOGO.png' %}" alt="Logo"/></a>
+      <a class="navbar-text2" href="{% url 'post_list' %}"><h1>ISKOLINE</h1></a>
+    </div>
+  <ul class="nav-links">
+    <div class="navbar-links">
+      <a href="{% url 'post_list' %}">Home</a>
       <a href="{% url 'enterroom' %}">Enter a Room</a>
       <a href="{% url 'saveroom' %}">Save Room</a>
-      <a href="{% url 'logout' %}">{{request.user}}, Logout</a>
-    </ul>
-  </div>
+      <a href="{% url 'logout' %}"><u>{{request.user}}</u> , Logout</a>
+    </div>
+</ul>
+</div> -->
 </header>
 <body>
+  <nav class="navbar">
+    <div class="navbar-text1">
+      <a href="{% url 'post_list' %}"><img src="{% static '/images/ISKOLINE_LOGO.png' %}" alt="Logo"/></a>
+      <a class="navbar-text2" href="{% url 'post_list' %}"><h1>ISKOLINE</h1></a>
+    </div>
+    <div class="nav-links">
+        <a href="{% url 'post_list' %}">Home</a>
+        <a href="{% url 'enterroom' %}">Enter a Room</a>
+        <a href="{% url 'saveroom' %}">Save Room</a>
+        <a href="{% url 'logout' %}"><u>{{request.user}}</u> , Logout</a>
+    </div>
+  </nav>
+
   <section>
     <div class="dashboard">
       <div class="roomlist">
@@ -22,7 +39,7 @@ Dashboard {% endblock %} {% block content %}
             ><div class="room">
               <h4 style="text-transform: uppercase">{{room.roomname}}</h4>
               <h5>{{room.rooms}}</h5>
-              <a href="{% url 'update' room.rndid %}">Update</a>
+              <a href="{% url 'update' room.rndid %}">Update <i class="far fa-edit"></i></a>
             </div>
           </a>
         {% endfor %}
