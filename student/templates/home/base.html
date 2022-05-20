@@ -24,7 +24,8 @@
             </button>
 
             <div class="collapse navbar-collapse" id="collapse_target">
-                <a class="navbar-brand" href="{% url 'post_list' %}"><img class="logo" src={% static "../media/ISKOLINE_LOGO.png" %} ></a>
+                <a class="navbar-brand" href="{% url 'post_list' %}"><img class="logo" 
+                    src="{% static '/images/ISKOLINE_LOGO.png' %}"></a>
                 <a class="navbar-text" href="{% url 'post_list' %}">ISKOLINE</a>
             </div>
 
@@ -42,7 +43,7 @@
                         </div>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'announcement' %}">Announcements</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Chat</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'chatindex' %}">Chat</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'profile' user.profile.pk %}">Profile</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
                 </ul>

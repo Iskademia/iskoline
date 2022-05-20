@@ -1,9 +1,12 @@
+from django.contrib.auth import views as auth_views
+
 from django.urls import path
 from .views import *
 from . import views
 
 urlpatterns = [
-    path('', views.PostFeed, name='post_list'),
+    path('', views.LandingPage, name='index'),
+    path('post_list', views.PostFeed, name='post_list'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post_detail'),
     path('post/edit/<int:pk>/', PostEditView.as_view(), name='post_edit'),
     path('post/delete/<int:pk>/', PostDeleteView.as_view(), name='post_delete'),
@@ -28,4 +31,25 @@ urlpatterns = [
     path('login/', views.loginPage, name="login"),
     path('register/', views.registerPage, name="register"),
     path('logout/', views.logoutUser, name="logout"),
+    # Forgot Password
+    path(
+        'reset_password/',
+        auth_views.PasswordResetView.as_view(),
+        name='reset_password',
+    ),
+    path(
+        'reset_password_sent/',
+        auth_views.PasswordResetDoneView.as_view(),
+        name='password_reset_done',
+    ),
+    path(
+        'reset/<uidb64>/<token>/',
+        auth_views.PasswordResetConfirmView.as_view(),
+        name='password_reset_confirm',
+    ),
+    path(
+        'reset_password_complete/',
+        auth_views.PasswordResetCompleteView.as_view(),
+        name='password_reset_complete',
+    ),
 ]
