@@ -222,7 +222,7 @@ class ProfileView(View):
 
 class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = UserProfile
-    fields = ['name', 'bio', 'gender', 'birth_date', 'location', 'picture', 'student_id']
+    fields = ['name', 'student_id', 'bio', 'gender', 'birth_date', 'location', 'picture']
     template_name = 'home/profile_edit.html'
 
     def get_success_url(self):
