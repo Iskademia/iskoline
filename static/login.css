@@ -34,7 +34,6 @@ body {
     background-color: rgba(255, 253, 253, 0.4); /* Black w/opacity/see-through */
     color: black;
     backdrop-filter: blur(8px);
-    position: sticky;
 }
 .form_container {
     margin-top: 20px;
