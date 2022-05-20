@@ -33,116 +33,13 @@ body {
     flex-direction: column;
 }
 .logo{
-    max-width: 180px;
-    max-height: 180px;
+    max-width: 150px;
+    max-height: 150px;
+    margin-right: -20px;
 }
 .navbar-nav{
     transform: translateX(25%);
 }
-/*
-nav .navbar{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    min-height: 8vh;
-    background-color: #5d4954;
-    color: white;
-}
-
-ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar .menu{
-    display: flex;
-}
-
-.menu a{
-    color: white;
-    margin: 10px;
-}
-
-.burger{
-    display: none;
-    color: white;
-}
-
-.navbar{
-    position: fixed;
-    height: 90px;
-    width: 100%; 
-    padding: 30px 0;
-    padding-bottom: 12px;
-    font-family: 'Ubuntu', sans-serif;
-    transition: all 0.3s ease;
-    border-bottom: 1px solid maroon;
-    margin-top: -16px;
-    flex-direction: row;
-    column-gap: 30%;
-    z-index: 9999;
-}
-.navbar .max-width{
-    display: flex;
-    margin-right: 30px;
-    justify-content: space-between;
-
-}
-
-.navbar .menu li{
-    list-style: none;
-    display: inline-block;
-}
-.navbar .menu li a{
-    display: block;
-    color: #111;
-    font-size: 18px;
-    font-weight: 500;
-    margin-left: 25px;
-    transition: color 0.3s ease;
-}
-.navbar .menu li a:hover{
-    color: crimson;
-    text-decoration: none;
-}
-
-.navbar .menu li a:active{
-    color: crimson;
-    text-decoration: none;
-}
-
-
-
-.navbar .logo a{
-    text-decoration: none;
-}
-
-.navbar .logo a{
-    color: crimson;
-    font-size: 35px;
-    font-weight: 600;
-}
-
-.navbar .logo a span{
-    color: maroon;
-    transition: all 0.3s ease;
-}
-.navbar .logo a:hover{
-    color: maroon;
-    text-decoration: none;
-}
-
-
-.burger div{
-    width: 25px;
-    height: 2px;
-    background-color: black;
-    margin: 5px;
-    color: black;
-}
-*/
-
 .body{
     height: 100vh;
     color: #111;
@@ -177,21 +74,6 @@ ul {
     font-size: x-large;
     color: black;
 }
-
-@media (max-width: 768){
-    .menu {
-        position: absolute;
-        right: 0px;
-        height: 92vh;
-        top: 8vh;
-        background-color: #5d4954;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transform: translateX(100%);
-    }
-}
 .navbar1
 {
     background-color: #ffffff;
@@ -205,7 +87,7 @@ ul {
 
 .navbar-text 
 {
-    font-size: 55px;
+    font-size: 35px;
     font-weight: bold;
     /* color: CF0000; */
     background: -webkit-linear-gradient(right, #FF0000, #9F0606);
@@ -218,10 +100,9 @@ ul {
 {
     color: red !important;
     font-weight: bold;
-    font-size: larger;
 }
 
 .navbar-toggler
 {
-    background-color: rgb(235, 235, 235);
+    background-color: rgb(148, 34, 34);
 }

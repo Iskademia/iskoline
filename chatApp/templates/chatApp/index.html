@@ -27,6 +27,20 @@
 	<!-- {% endif %} -->
 	<title>{% block title %}{% endblock %}</title>
 </head>	
+<body>
+	<nav class="navbar">
+		<div class="navbar-text1">
+		  <a href="{% url 'post_list' %}"><img src="{% static '/images/ISKOLINE_LOGO.png' %}" alt="Logo"/></a>
+		  <a class="navbar-text2" href="{% url 'post_list' %}"><h1>ISKOLINE</h1></a>
+		</div>
+		<div class="nav-links">
+			<a href="{% url 'post_list' %}">Home</a>
+			<a href="{% url 'enterroom' %}">Enter a Room</a>
+			<a href="{% url 'saveroom' %}">Save Room</a>
+			<a href="{% url 'logout' %}"><u>{{request.user}}</u> , Logout</a>
+		</div>
+	  </nav>
+</body>
 {% block content %}
 {% endblock %}
 </html>
