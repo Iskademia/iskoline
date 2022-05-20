@@ -54,10 +54,12 @@
                 </div>
             
                 <div class="col-md-">
-                    {% if profile.gender == 'Male' %}
-                    <p  style="text-indent:10px;"> <i class="fa fa-male"> </i> {{ profile.gender }} </p>
-                    {% else %}
-                    <p style="text-indent:10px;"> <i class="fa fa-female"> </i> {{ profile.gender }}</p>
+                    {% if profile.gender %}
+                        {% if profile.gender == 'Male' %}
+                        <p  style="text-indent:10px;"> <i class="fa fa-male"> </i> {{ profile.gender }} </p>
+                        {% else %}
+                        <p style="text-indent:10px;"> <i class="fa fa-female"> </i> {{ profile.gender }}</p>
+                        {% endif %}
                     {% endif %}
                 </div>
 
