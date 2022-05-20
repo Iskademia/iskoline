@@ -26,7 +26,10 @@ nav{
     display: flex;
     justify-content: center;
     align-items: center;
-    color: red;
+    /* color: red; */
+    background: -webkit-linear-gradient(right, #FF0000, #9F0606);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-left: 50px;
     font-weight: 700;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -73,11 +76,24 @@ nav{
     height: 90vh;
     display: flex;
     flex-direction: column;
-    background: url("../media/background.jpg") no-repeat center;
+    /* background: url("../media/background.jpg") no-repeat center;
     background-size: cover;
-    background-attachment: fixed;
+    background-attachment: fixed; */
     width: 100vw;
+    /* opacity: 0.5; */
+    position: relative;
+    text-align: center;
 }
+
+.demo-bg {
+    opacity: 0.5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+}
+
 .iskoline{
     margin-top: 40px;
     display: flex;
@@ -85,31 +101,51 @@ nav{
     align-items: center;
     font-size: large;
 }
+
 .iskoline-info{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
     height: 630px;
+    position: relative;
 }
-.iskoline-logo{
+
+/* .iskoline-logo{
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     height: 400px;
     width: 400px;
+} */
+
+.description {
+    font-size: larger;
 }
-.description p{
+
+.description p {
     text-align: justify;
+    justify-content: center;
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 500px;
-    height: 500px;
+    /* width: 500px;
+    height: 500px; */
     color: black;
-    font-size: 20px;
+    font-size: 50px;
 }
+
+.description li {
+    text-align: justify;
+    margin-left: 110px;
+}
+
 .buttons a{
     text-decoration: none;
     color: black;
 }
+
+.content {
+    text-align: justify;
+    align-items: center;
+} 
+
