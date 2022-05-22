@@ -32,12 +32,16 @@ body {
     display: flex;
     flex-direction: column;
 }
+
 .logo{
-    max-width: 180px;
-    max-height: 180px;
+    max-height: 104px;
+    max-width: 170px;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
 }
+
 .navbar-nav{
-    transform: translateX(25%);
+    transform: translateX(22%);
 }
 /*
 nav .navbar{
@@ -112,8 +116,6 @@ ul {
     text-decoration: none;
 }
 
-
-
 .navbar .logo a{
     text-decoration: none;
 }
@@ -178,7 +180,8 @@ ul {
     color: black;
 }
 
-@media (max-width: 768){
+
+@media only screen and (max-width:768) {
     .menu {
         position: absolute;
         right: 0px;
@@ -191,7 +194,13 @@ ul {
         align-items: center;
         transform: translateX(100%);
     }
+
 }
+
+/* .navbar-brand {
+    position: relative;
+} */
+
 .navbar1
 {
     background-color: #ffffff;
@@ -199,37 +208,61 @@ ul {
     font-family: 'Poppins';
     font-size: 18px;
     border: 1px solid lightgray;
-    border-radius: 3px;
+    border-radius: 3px; 
     box-shadow: 0 3px 0 gray;
-}
+    -webkit-box-shadow: 0 8px 20px 0 rgba(63, 63, 68, 0.37);
+    box-shadow: 0 8px 20px 0 rgba(63, 63, 68, 0.37);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px); 
+} 
 
-.navbar-text 
+.navbar-text
 {
-    font-size: 55px;
+    font-size: 60px;
     font-weight: bold;
-    /* color: CF0000; */
+    color: #CF0000;
     background: -webkit-linear-gradient(right, #FF0000, #9F0606);
     -webkit-background-clip: text;
-            background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
-}
+} 
 
 .nav-item a
 {
     color: red !important;
     font-weight: bold;
     font-size: larger;
+    text-align: left;
+}
+
+.navbar-nav a:hover
+{
+    opacity: 0.5;
 }
 
 .navbar-toggler
 {
-    background-color: rgb(235, 235, 235);
+    background-color: #9F0606;
 } 
 
-a:hover {
-    opacity: 0.5;
-}
-
+.button {
+    background-color: red; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    margin: 0px;
+  }
+  
+  .button2:hover button2:active {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  }
 
 /* POST LIST student*/
 
@@ -376,4 +409,9 @@ a:hover {
     border-color: #333333;
   }
 
- 
+  .bio {
+    position:absolute;
+    padding-top: 15px;
+    left: 250px;
+  }
+

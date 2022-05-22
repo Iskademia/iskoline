@@ -14,10 +14,6 @@ html {
   height: relative;
 }
 
-/* body {
-
-} */
-
 .navbar {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -36,13 +32,14 @@ html {
   box-shadow: 0 8px 20px 0 rgba(63, 63, 68, 0.37);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  /* box-shadow: 0 3px 0 gray; */
 }
 
 .navbar img {
   margin-top: 0.5rem;
   margin-left: 2rem;
-  height: 95px;
-  width: 190px;
+  max-height: 95px;
+  max-width: 190px;
 }
 
 .nav-links{
@@ -59,9 +56,9 @@ html {
   font-size: 22px;
 }
 
-/* .nav-links a:hover {
-  color: #cadbe2;
-} */
+.nav-links a:hover {
+opacity: 0.5;
+}
 
 .navbar-links {
   /* padding-left: 500px; */
@@ -70,14 +67,12 @@ html {
   /* transform: translateX(20%); */
 }
 
-.navbar-text2 h1:hover{
-  color: #000;
-}
+
 .navbar-text1  {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 25px;
+  font-size: 40px;
   font-weight: bold;
   /* color: CF0000; */
   background: -webkit-linear-gradient(right, #FF0000, #9F0606);
@@ -108,13 +103,13 @@ section {
   border-radius: 20px;
 }
 
-.main img {
-  width: 400px;
+/* .main img {
   height: 104px;
-}
+  width: 400px;
+} */
 
 .text-content {
-  /* margin-top: rem; */
+  margin-top: rem;
   text-align: left;
   width: 500px;
 }
@@ -634,9 +629,9 @@ button:hover {
   opacity: 0.5;
 }
 
-a:hover {
+/* a:hover {
   opacity: 0.5;
-}
+} */
 
 .goback a {
   width: 100px;
