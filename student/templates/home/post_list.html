@@ -1,9 +1,50 @@
 {% extends 'home/base.html' %} {% load crispy_forms_tags %} {% block content %}
-<div class="container">
-  <div class="row justify-content-center mt-3">
-    <div class="post col-md-5 col-sm-12">
-      <h5>What's your concern?</h5>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+     <!-- profile--> 
+ 
+<div class="profile1">
+  <!--INSERT IMAGE-->
+
+ </div>
+    <div class="name">
+        <!--name and student id-->
+        <h5><b>Fname M. Lname</b></h5>
+        <h6>2019-0000-MN-0</h6>
+    <!--notifications-->
+        <div class="notifications-home">
+          <h5><b>Notifications</b></h5>
+          <p>No Notifications</p>
+      </div>
     </div>
+ 
+
+
+<div class="container">
+  
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!--TEXT AREA-->
+    <textarea class ="textarea" placeholder="Say Something.." name="body"></textarea>
+    <div class="username">
+      <!-- {{form.description}} -->
+    </div>
+    <div class="username">
+      <label class="icons" for="file" >
+        <span class="material-icons"> &nbsp;
+          add_a_photo
+        </span>
+         Add a Photo </label>
+      <input type="file" id="file" accept="image/*" name="image" />
+
+      <!-- {{form.post_image}} -->
+    </div>
+    <div class="pushb">
+      <button class="btn btn-success mt-3">Post</button>
+    </div>
+  </form>
+  
+  <div class="row justify-content-center mt-3">
   </div>
   <div class="row justify-content-center mt-3 mb-5">
     <div class="col-md-5 col-sm-12">
@@ -40,11 +81,7 @@
         {% else %}
         <img src="https://res.cloudinary.com/dmagk9gck/image/upload/v1652844857/media/uploads/default_u8embw.jpg" class="rounded-circle mr-3" width="50" height="50" />
         {% endif %}
-        <a
-          class="profile-link"
-          href="{% url 'profile' post.author.profile.pk %}"
-          >{{ post.author }}</a
-        >
+        <a class="profile-link" href="{% url 'profile' post.author.profile.pk %}">{{ post.author }}</a>
         {{ post.date | date:"F d, Y"}}
       </div>
       <div class="post-content position-relative">
@@ -52,7 +89,7 @@
         {% if post.image %}
         <div class="image">
           <img src="{{ post.image.url }}" class="post-image" />
-        </div>
+        </div>  
         {% endif %}
         <a class="stretched-link" href="{% url 'post_detail' post.pk %}"></a>
       </div>

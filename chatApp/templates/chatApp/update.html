@@ -7,7 +7,7 @@
 	<body>
 		<section>
 			<div class="goback">
-			  <a href="{% url 'chatindex' %}">Go back</a>
+			  <a href="{% url 'chatindex' %}"> <i class="fa fa-chevron-left" aria-hidden="true"></i> Go back</a>
 			</div>
 			<div class="update-wrapper">
 			  <div class="update-card">
@@ -27,7 +27,7 @@
 					{{rooms.description}}
 				  </div>
 				  <div>
-					<button type="submit">Update </button>
+					<button type="submit">Update</button>
 					<a href="{% url 'delete' randid %}">Delete</a>
 				  </div>
 				</form>

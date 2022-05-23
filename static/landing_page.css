@@ -1,0 +1,151 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+html, body{
+    margin: 0;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+nav{
+    width: 100vw;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.logo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* color: red; */
+    background: -webkit-linear-gradient(right, #FF0000, #9F0606);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 50px;
+    font-weight: 700;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.logo{
+    height: 100%;
+    width: 100%;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.header{
+    display: flex;
+    height: 10vh;
+    justify-content: space-between;
+    border-bottom: 1px black solid;
+    width: 100vw;
+}
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 50px;
+}
+.login{
+    border-radius: 5px;
+    border: none;
+    background-color: #FF0000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: white;
+    width: 100px;
+    height: 40px;
+}
+.register{
+    border-radius: 5px;
+    border: none;
+    background-color: #D8D7CC;
+    color: red;
+    width: 100px;
+    height: 40px;
+    margin-left: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.body{
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    /* background: url("../media/background.jpg") no-repeat center;
+    background-size: cover;
+    background-attachment: fixed; */
+    width: 100vw;
+    /* opacity: 0.5; */
+    position: relative;
+    text-align: center;
+}
+
+.demo-bg {
+    opacity: 0.5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+}
+
+.iskoline{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+}
+
+.iskoline-info{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    height: 630px;
+    position: relative;
+}
+
+/* .iskoline-logo{
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 400px;
+    width: 400px;
+} */
+
+.description {
+    font-size: larger;
+}
+
+.description p {
+    text-align: justify;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    /* width: 500px;
+    height: 500px; */
+    color: black;
+    font-size: 50px;
+}
+
+.description li {
+    text-align: justify;
+    margin-left: 110px;
+}
+
+.buttons a{
+    text-decoration: none;
+    color: black;
+}
+
+.content {
+    text-align: justify;
+    align-items: center;
+} 
+
