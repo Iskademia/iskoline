@@ -19,6 +19,12 @@
           <input type="file" name="image" />
           <!-- {{form.post_image}} -->
         </div>
+        <select name="faculty" id="">
+          <option  value="" selected="selected">---SELECT---</option>
+          {% for prof in faculty %}
+          <option  value="{{prof.user}}">{{prof.name|capfirst}}</option>
+          {% endfor %}
+        </select>
         <div class="d-grid gap-2">
           <button class="btn btn-success mt-3">Submit!</button>
         </div>

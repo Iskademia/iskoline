@@ -2,22 +2,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link
-		rel="stylesheet"
-		href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-		integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-		crossorigin="anonymous"/>
-	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"> -->
-	<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
-	<!-- {% if user.is_authenticated %} -->
-	<!-- <link rel="icon" href="https://avatars.dicebear.com/api/avataaars/{{request.user.username}}.svg" type="image/x-icon"> -->
-	<!-- {% else %} -->
-	<!-- <link rel="icon" href="{% static '/image/favicon.ico' %}" type="image/x-icon"> -->
-	<!-- {% endif %} -->
-	<title>Faculty</title>
-</head>	
-{% block content %}
-{% endblock %}
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>Iskoline</title>
+    {% endif %}
+</head>
+<body>
+    <div class="navbar1">
+        <nav class="navbar navbar-expand-md navbar-dark sticky-top">
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="collapse_target">
+                <a class="navbar-brand" href="{% url 'chairpersonindex' %}"><img class="logo" 
+                    src="{% static '/images/ISKOLINE_LOGO.png' %}"></a>
+                <a class="navbar-text" href="{% url 'chairpersonindex' %}">ISKOLINE</a>
+            </div>
+
+            <div class="collapse navbar-collapse"  id="collapse_target">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'facultyindex' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'facannouncement' %}">Announcements</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'chatindex' %}">Chat</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'faclogout' %}">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    {% block content %}{% endblock %}
+        
+</body>
 </html>

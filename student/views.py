@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from .models import *
+from department.models import *
+from department.models import *
 from .forms import *
 from django.views.generic.edit import UpdateView, DeleteView
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
@@ -9,8 +11,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import CreateUserForm
+import re
 
 from django.contrib.auth.decorators import login_required
+
+
+email_regex = "^[a-zA-Z_-]+@iskolarngbayan\.pup\.edu\.ph$"
 
 #Login
 def loginPage(request):
@@ -37,8 +43,13 @@ def registerPage(request):
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            return redirect('login')
+            email = form.cleaned_data.get("email")
+            print("email", email)
+            if re.match(email_regex, email):
+                form.save()
+                return redirect('login')
+            else:
+                messages.info(request, 'Email Should be PUP Webmail only')
     context = {'form':form}
     return render(request, 'home/register.html', context)
 
@@ -47,80 +58,67 @@ def logoutUser(request):
 	return redirect('login')
 
 #Announcement Views
-class AnnouncementView(LoginRequiredMixin, View):
-    def get(self, request, *args, **kwargs):
-        posts = AnnouncementPost.objects.all().order_by('-date')
-        form = AnnouncementForm()
-        
-        context = {
-            'announcement': posts,
-            'form': form,
-        }
-
-        return render(request, 'home/announcement.html', context)
-
-    def post(self, request, *args, **kwargs):
-        posts = AnnouncementPost.objects.all().order_by('-date')
-        form = AnnouncementForm(request.POST, request.FILES)
-
-        if form.is_valid():
-            new_post = form.save(commit=False)
-            new_post.author = request.user
-            new_post.save()
-
-        context = {
-            'announcement': posts,
-            'form': form,
-        }
-        return render(request, 'home/announcement.html', context)
-
-class AnnouncementStudentView(LoginRequiredMixin, View):
-    def get(self, request, *args, **kwargs):
-        posts = AnnouncementPost.objects.all().order_by('-date')
-        
-        context = {
-            'announcement': posts,
-        }
-
-        return render(request, 'home/announcement_student_view.html', context)
+@login_required(login_url='login')
+def AnnouncementView(request):
+    posts = AnnouncementPost.objects.all().order_by('-date')
+    context = {'announcement': posts}
+    return render(request, 'home/announcement.html', context)
 
 class AnnouncementPostDetailView(LoginRequiredMixin, View):
     def get(self, request, pk):
-        post = AnnouncementPost.objects.get(pk=pk)
+            post = AnnouncementPost.objects.get(pk=pk)
+            form = AnnouncementCommentForm()
+            comments = AnnouncementComment.objects.filter(post=post).order_by('-date')
 
-        context = {
-            'post': post,
-        }
-        return render(request, 'home/announcement_post_detail.html', context)
+            context = {
+                'post': post,
+                'form': form,
+                'comments': comments,
+            }
 
-class AnnouncementPostEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = AnnouncementPost
-    fields = ['body']
-    template_name = 'home/announcement_post_edit.html'
-    
+            return render(request, 'home/announcement_post_detail.html', context)
+
+    def post(self, request, pk, *args, **kwargs):
+        if request.user.is_authenticated:
+            user = request.user.profile
+            post = AnnouncementPost.objects.get(pk=pk)
+            form = AnnouncementCommentForm(request.POST)
+
+            if form.is_valid():
+                new_comment = form.save(commit=False)
+                new_comment.author = request.user
+                new_comment.post = post
+                new_comment.save()
+            
+            comments = AnnouncementComment.objects.filter(post=post).order_by('-date')
+
+            context = {
+                'post': post,
+                'form': form,
+                'comments': comments,
+            }
+
+            return render(request, 'home/announcement_post_detail.html', context)
+
+class AnnouncementCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = AnnouncementComment
+    template_name = 'home/announcement_comment_delete'
+
     def get_success_url(self):
-        pk = self.kwargs['pk']
+        pk = self.kwargs['post_pk']
         return reverse_lazy('announcement_post_detail', kwargs={'pk': pk})
-    
-    def test_func(self):
-        post = self.get_object()
-        return self.request.user == post.author
-
-class AnnouncementPostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = AnnouncementPost
-    template_name = 'home/announcement_post_delete.html'
-    success_url = reverse_lazy('announcement')
 
     def test_func(self):
-        post = self.get_object()
-        return self.request.user == post.author
-
-
+        comment = self.get_object()
+        return self.request.user == comment.author
 
 #General Feed Views
 @login_required(login_url="login")
 def PostFeed(request):
-    posts = Post.objects.all().order_by('-date')
+    if not request.user.email:
+        return redirect("chairpersonindex")
+    posts = Post.objects.filter(faculty__isnull=True).order_by('-date')
+    faculty = FacultyProfile.objects.all()
     form = PostForm()
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
@@ -130,6 +128,7 @@ def PostFeed(request):
         return redirect("post_list")
     context = {
             'post_list': posts,
+            'faculty': faculty,
             'form': form,
         }
     return render(request, "home/post_list.html", context)
@@ -172,7 +171,7 @@ class PostDetailView(LoginRequiredMixin, View):
 
 class PostEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['body']
+    fields = ['body', 'image']
     template_name = 'home/post_edit.html'
     
     def get_success_url(self):
@@ -298,7 +297,7 @@ class RegistrarPostDetailView(LoginRequiredMixin, View):
 
 class RegistrarPostEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = RegistrarPost
-    fields = ['body']
+    fields = ['body','image']
     template_name = 'home/registrar_post_edit.html'
     
     def get_success_url(self):
@@ -395,7 +394,7 @@ class ChairpersonPostDetailView(LoginRequiredMixin, View):
 
 class ChairpersonPostEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = ChairpersonPost
-    fields = ['body']
+    fields = ['body', 'image']
     template_name = 'home/chairperson_post_edit.html'
     
     def get_success_url(self):
