@@ -48,7 +48,28 @@
   </div>
   <div class="row justify-content-center mt-3 mb-5">
     <div class="col-md-5 col-sm-12">
-      
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="username">
+          <label>Description: </label>
+          <textarea name="body"></textarea>
+          <!-- {{form.description}} -->
+        </div>
+        <div class="username">
+          <label>Upload image: </label>
+          <input type="file" name="image" />
+          <!-- {{form.post_image}} -->
+        </div>
+        <select name="faculty" id="">
+          <option  value="" selected="selected">---SELECT---</option>
+          {% for prof in faculty %}
+          <option  value="{{prof.user}}">{{prof.name|capfirst}}</option>
+          {% endfor %}
+        </select>
+        <div class="d-grid gap-2">
+          <button class="btn btn-success mt-3">Submit!</button>
+        </div>
+      </form>
     </div>
   </div>
   {% for post in post_list %}

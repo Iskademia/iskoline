@@ -1,17 +1,16 @@
-{% extends 'home/base.html' %}
+{% extends 'department/index.html' %}
 {% load crispy_forms_tags %}
-
 {% block content %}
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-3 col-sm-6">
-            <a href="{% url 'registrar' %}" class="btn btn-light">Back to Feed</a>
+            <a href="{% url 'cpannouncement_post_detail' object.post.pk %}" class="btn btn-light">Back to Post</a>
         </div>
     </div>
     <div class="row justify-content-center mt-5">
-        <div class="col-md-10 col-sm-12">
+        <div class="col-md-5 col-sm-12">
             <h5>Are You Sure?</h5>
-            <p>You are about to delete this post, this cannot be undone.</p>
+            <p>You are about to delete this comment, this cannot be undone.</p>
         <form method="POST">
             {% csrf_token %}
             <div class="d-grid gap-2">

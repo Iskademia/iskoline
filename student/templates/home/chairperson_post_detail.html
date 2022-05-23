@@ -53,12 +53,17 @@
     {% for comment in comments %}
     <div class="row justify-content-center mt-3 mb-5 border-bottom">
         <div class="col-md-5 col-sm-12">
-                    {% if post.author.profile.picture %}
-                    <img class="rounded-circle mr-3" height="50" width="50" src="{{ post.author.profile.picture.url }}" />
-                    {% else %}
-                    <img src="https://res.cloudinary.com/dmagk9gck/image/upload/v1652844857/media/uploads/default_u8embw.jpg" class="rounded-circle mr-3" width="50" height="50" />
-                    {% endif %}
-                    <a class="profile-link" href="{% url 'profile' comment.author.profile.pk %}">{{ comment.author }}</a> {{ comment.date }}
+                {% if comment.author.profile.picture %}
+                <img class="rounded-circle mr-3" height="50" width="50" src="{{ comment.author.profile.picture.url }}" />
+                {% else %}
+                <img src="https://avatars.dicebear.com/api/initials/{{comment.author}}.svg" class="rounded-circle mr-3" width="50" height="50" />
+                {% endif %}
+                {% if comment.author.facultyprofile %}
+                {{ comment.author }}
+                {% else %}
+                <a class="profile-link" href="{% url 'profile' comment.author.profile.pk %}">{{ comment.author }}</a> 
+                {% endif %}
+                {{ comment.date }}
                 {% if request.user == comment.author %}
                 <a href="{% url 'chairperson_comment_delete' post.pk comment.pk %}" style="color: #333;"><i class="fas fa-trash"></i></a>
                 {% endif %}
