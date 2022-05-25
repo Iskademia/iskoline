@@ -21,6 +21,7 @@ nav{
     display: flex;
     flex-direction: column;
     height: 100vh;
+    
 }
 .logo-container{
     display: flex;
@@ -90,9 +91,10 @@ nav{
     background-size: cover;
     background-attachment: fixed; */
     width: 100vw;
-    /* opacity: 0.5; */
-    position: relative;
-    text-align: center;
+    background-color: rgb(255, 255, 255); /* Fallback color */
+    background-color: rgba(255, 253, 253, 0.4); /* Black w/opacity/see-through */
+    color: black;
+    backdrop-filter: blur(8px);
 }
 
 .demo-bg {
@@ -105,11 +107,15 @@ nav{
 }
 
 .iskoline{
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
     font-size: large;
+    background-color: rgb(255, 255, 255); /* Fallback color */
+    background-color: rgba(255, 253, 253, 0.4); /* Black w/opacity/see-through */
+    color: black;
+    backdrop-filter: blur(8px);
+}
+.iskoline h2{
+    margin-top: 5rem;
 }
 
 .iskoline-info{
@@ -117,8 +123,11 @@ nav{
     justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
-    height: 630px;
-    position: relative;
+    height: 100%;
+    background-color: rgb(255, 255, 255); /* Fallback color */
+    background-color: rgba(255, 253, 253, 0.4); /* Black w/opacity/see-through */
+    color: black;
+    backdrop-filter: blur(10px);
 }
 
 /* .iskoline-logo{
@@ -129,16 +138,6 @@ nav{
     width: 400px;
 } */
 
-.description h1 {
-    /* font-size: 2vw; */
-    text-align: center;
-    font-size: 58px;
-    background: -webkit-linear-gradient(right, #FF0000, #9F0606);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    /* margin-top: -4%;
-    margin-bottom: -4%; */
-}
 
 /* .description h2 {
     font-size: 20px;

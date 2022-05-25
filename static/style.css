@@ -34,15 +34,15 @@ body {
 }
 
 .logo{
-    max-height: 104px;
-    max-width: 170px;
-    margin-bottom: 1rem;
-    margin-left: 1rem;
+    max-width: 150px;
+    max-height: 150px;
+    margin-right: -20px;
 }
 
 .navbar-nav{
     transform: translateX(22%);
 }
+
 /*
 nav .navbar{
     display: flex;
@@ -244,8 +244,8 @@ ul {
 
 .navbar-toggler
 {
-    background-color: #9F0606;
-} 
+    background-color: rgb(148, 34, 34);
+}
 
 .button {
     font-family: 'Poppins';
@@ -430,3 +430,4 @@ ul {
   .bio {
       float: right;
       margin-top: -25%;
+
