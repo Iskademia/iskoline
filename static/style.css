@@ -248,18 +248,25 @@ ul {
 } 
 
 .button {
+    font-family: 'Poppins';
+    font-weight: bold;
     background-color: red; /* Green */
     border: none;
     color: white;
-    padding: 15px 32px;
+    /* padding: 15px 32px; */
+    padding: 10px 22px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    /* display: inline-block; */
     font-size: 13px;
     cursor: pointer;
-    -webkit-transition-duration: 0.4s; /* Safari */
+    -webkit-transition-duration: 0.4s; /* Safari **/
     transition-duration: 0.4s;
     margin: 0px;
+  }
+
+  .button:hover {
+      background-color: rgb(200, 0, 0);
   }
   
   .button2:hover button2:active {
@@ -423,8 +430,3 @@ ul {
   .bio {
       float: right;
       margin-top: -25%;
-    /* position:absolute;
-    padding-top: 15px; */
-    /* left: 250px; */
-  }
-

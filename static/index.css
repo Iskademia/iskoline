@@ -8,10 +8,11 @@
 }
 
 html {
-  background-image: url('images/chatbg1ver2.png');
+  background-image: url('images/ChatBg.png');
   background-size: 100%;
   background-color: #cadbe2;
-  height: relative;
+  height: 100%;
+  background-size: cover;
 }
 
 .navbar {
@@ -282,6 +283,10 @@ textarea,
   background-color: #cadbe2;
 }
 
+.generate button:hover{
+  background-color:#c8dce4;
+}
+
 .generate a {
   text-decoration: none;
   border-radius: 5px;
@@ -290,6 +295,10 @@ textarea,
   background-color: #cadbe2;
   color: #000000;
   padding: 0.8rem;
+}
+
+.generate a:hover {
+  background-color: #96becf;
 }
 
 .generate h3 {
