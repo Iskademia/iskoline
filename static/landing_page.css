@@ -27,7 +27,10 @@ nav{
     display: flex;
     justify-content: center;
     align-items: center;
-    color: red;
+    /* color: red; */
+    background: -webkit-linear-gradient(right, #FF0000, #9F0606);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-left: 50px;
     font-weight: 700;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -54,12 +57,17 @@ nav{
 .login{
     border-radius: 5px;
     border: none;
-    background-color: #FF0000;
+    background-color: #ff0000;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: white;
     width: 100px;
     height: 40px;
 }
+
+.login:hover {
+    background-color: #df0909;
+}
+
 .register{
     border-radius: 5px;
     border: none;
@@ -70,19 +78,34 @@ nav{
     margin-left: 20px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+
+.register:hover {
+    background-color: #848484;
+}
+
 .body{
     height: 90vh;
     display: flex;
     flex-direction: column;
-    background: url("../media/background.jpg") no-repeat center;
+    /* background: url("../media/background.jpg") no-repeat center;
     background-size: cover;
-    background-attachment: fixed;
+    background-attachment: fixed; */
     width: 100vw;
     background-color: rgb(255, 255, 255); /* Fallback color */
     background-color: rgba(255, 253, 253, 0.4); /* Black w/opacity/see-through */
     color: black;
     backdrop-filter: blur(8px);
 }
+
+.demo-bg {
+    opacity: 0.5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
 .iskoline{
     text-align: center;
     font-size: large;
@@ -94,6 +117,7 @@ nav{
 .iskoline h2{
     margin-top: 5rem;
 }
+
 .iskoline-info{
     display: flex;
     justify-content: space-evenly;
@@ -104,27 +128,58 @@ nav{
     background-color: rgba(255, 253, 253, 0.4); /* Black w/opacity/see-through */
     color: black;
     backdrop-filter: blur(10px);
-    
 }
-.iskoline-logo{
+
+/* .iskoline-logo{
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     height: 400px;
     width: 400px;
-    
-}
-.description p{
+} */
+
+
+/* .description h2 {
+    font-size: 20px;
+    margin-bottom: auto;
+} */
+
+.description {
     text-align: justify;
-    display: flex;
+    /* text-align: center; */
     align-items: center;
     justify-content: center;
-    width: 500px;
-    height: 500px;
+    margin-left: 110px;
+    margin-right: 90px;
+    /* display: flex; */
     color: black;
-    font-size: 20px;
+    font-size: 30px;
+    /* width: 500px;
+    height: 500px; */
+    /* font-size: 50px; */
 }
+
+/* .description li {
+    text-align: justify;
+    margin-left: 110px;
+    margin-right: 90px;
+    font-size: 13px;
+    font-size: 1.5vw; 
+} */
+
 .buttons a{
     text-decoration: none;
     color: black;
 }
+
+.content {
+    text-align: justify;
+    align-items: center;
+} 
+
+@media (max-width: 800px) {
+    .iskoline-info {
+        text-align: center;
+    }
+  }
+  

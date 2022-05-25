@@ -50,13 +50,20 @@ body {
     background: #33ccff !important;
     color: white !important;
 }
+
+.login_btn:hover {
+    background-color: #0090c1 !important;
+}
+
 .login_btn:focus {
     box-shadow: none !important;
     outline: 0px !important;
 }
+
 .login_container {
     padding: 0 2rem;
 }
+
 .input_user,
 .input_pass:focus {
     box-shadow: none !important;

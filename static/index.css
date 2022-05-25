@@ -9,10 +9,11 @@
 }
 
 html {
-  background-image: url('images/chatbg1ver2.png');
+  background-image: url('images/ChatBg.png');
   background-size: 100%;
   background-color: #cadbe2;
-  height: relative;
+  height: 100%;
+  background-size: cover;
 }
 
 /* body {
@@ -59,9 +60,9 @@ html {
   font-size: 22px;
 }
 
-/* .nav-links a:hover {
-  color: #cadbe2;
-} */
+.nav-links a:hover {
+opacity: 0.5;
+}
 
 .navbar-links {
   /* padding-left: 500px; */
@@ -69,6 +70,7 @@ html {
   /* float: right; */
   /* transform: translateX(20%); */
 }
+
 .navbar-text 
 {
     font-size: 35px;
@@ -79,6 +81,7 @@ html {
             background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
 section {
   width: 90%;
   margin: auto;
@@ -102,13 +105,13 @@ section {
   border-radius: 20px;
 }
 
-.main img {
-  width: 400px;
+/* .main img {
   height: 104px;
-}
+  width: 400px;
+} */
 
 .text-content {
-  /* margin-top: rem; */
+  margin-top: rem;
   text-align: left;
   width: 500px;
 }
@@ -281,6 +284,10 @@ textarea,
   background-color: #cadbe2;
 }
 
+.generate button:hover{
+  background-color:#c8dce4;
+}
+
 .generate a {
   text-decoration: none;
   border-radius: 5px;
@@ -289,6 +296,10 @@ textarea,
   background-color: #cadbe2;
   color: #000000;
   padding: 0.8rem;
+}
+
+.generate a:hover {
+  background-color: #96becf;
 }
 
 .generate h3 {
@@ -628,9 +639,9 @@ button:hover {
   opacity: 0.5;
 }
 
-a:hover {
+/* a:hover {
   opacity: 0.5;
-}
+} */
 
 .goback a {
   width: 100px;
