@@ -10,6 +10,7 @@ class Post(models.Model):
     date = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='uploads/post_photos', blank=True, null=True)
+    faculty = models.CharField(max_length=30, blank=True, null=True)
 
 class Comment(models.Model):
     comment = models.TextField()
@@ -17,20 +18,14 @@ class Comment(models.Model):
     post = models.ForeignKey('Post', on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
-class AnnouncementPost(models.Model):
-    body = models.TextField()
-    date = models.DateTimeField(default=timezone.now)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='uploads/post_photos', blank=True, null=True)
-
 class UserProfile(models.Model):
     user = models.OneToOneField(User, primary_key=True, verbose_name='user', related_name='profile', on_delete=models.CASCADE)
     name = models.CharField(max_length=30, blank=True, null=True)
     email = models.CharField(max_length=200, null=True)
-    bio = models.TextField(max_length=500, blank=True, null=True)
+    bio = models.TextField(max_length=50, blank=True, null=True)
     birth_date=models.DateField(null=True, blank=True)
     location = models.CharField(max_length=100, blank=True, null=True)
-    picture = models.ImageField(upload_to='uploads/profile_pictures', default='uploads/profile_pictures/default.jpg', blank=True)
+    picture = models.ImageField(upload_to='uploads/profile_pictures', blank=True)
     GENDER_CHOICES = (
         ('Male', 'Male'),
         ('Female', 'Female'),
@@ -62,13 +57,6 @@ class ChairpersonComment(models.Model):
     post = models.ForeignKey('ChairpersonPost', on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
-class FacultyPost(models.Model):
-    body = models.TextField()
-    date = models.DateTimeField(default=timezone.now)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='uploads/post_photos', blank=True, null=True)
-    faculty = models.CharField(max_length=30, blank=True, null=True)
- 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
