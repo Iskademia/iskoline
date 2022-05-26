@@ -8,12 +8,12 @@
 
 }
 
-html {
+body {
   background-image: url('images/ChatBg.png');
   background-size: 100%;
+  background-size: cover;
   background-color: #cadbe2;
   height: 100%;
-  background-size: cover;
 }
 
 /* body {
@@ -37,10 +37,13 @@ html {
   max-height: 150px;
   margin-right: -20px;
 }
-.nav-item a
-{
-    color: red !important;
-    font-weight: bold;
+.nav-item a {
+  color: red !important;
+  font-weight: bold;
+}
+
+.nav-item a:hover {
+  opacity: 0.5;
 }
 
 .nav-links{
@@ -48,10 +51,12 @@ html {
   justify-content: center;
   align-items: center;
 }
+
 .navbar-toggler
 {
-    background-color: rgb(148, 34, 34);
+  background-color: rgb(148, 34, 34);
 }
+
 .nav-links a {
   padding-right: 1rem;
   text-decoration: none;
@@ -60,9 +65,9 @@ html {
   font-size: 22px;
 }
 
-.nav-links a:hover {
-opacity: 0.5;
-}
+/* .nav-links a:hover {
+  opacity: 0.5;
+} */
 
 .navbar-links {
   /* padding-left: 500px; */
@@ -73,7 +78,7 @@ opacity: 0.5;
 
 .navbar-text 
 {
-    font-size: 35px;
+    font-size: 60px;
     font-weight: bold;
     /* color: CF0000; */
     background: -webkit-linear-gradient(right, #FF0000, #9F0606);
