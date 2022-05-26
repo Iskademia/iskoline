@@ -291,13 +291,10 @@ body {
     
 }
 
-/* ADD PHOTOS BUTTON*/
-
-  input[type="file"]{
-      display: none;
-  }
-
-
+.editbutton{
+    float: right;
+    margin-bottom: 10px;
+}
   /*add a photo*/
 
   .icons{
