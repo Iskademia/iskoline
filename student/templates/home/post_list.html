@@ -6,11 +6,11 @@
   <div class="miniprofile">
     <div class="profile1">
       <!--INSERT IMAGE-->
-      {% if profile.picture %}
+      <!-- {% if profile.picture %}
       <img src="{{ profile.picture.url }}" class="rounded-circle"/>
       {% else %}
       <img src="https://res.cloudinary.com/dmagk9gck/image/upload/v1652844857/media/uploads/default_u8embw.jpg" class="rounded-circle"/>
-      {% endif %}
+      {% endif %} -->
     </div>
       <div class="name" style="color: black; text-decoration:none;">
           <!--name and student id-->
@@ -22,29 +22,24 @@
 </a>
  
 
-
 <div class="container">
-  <div class="addcontent">
-    <form method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-      <!--TEXT AREA-->
-      <textarea class ="textarea" placeholder="Say Something.." name="body"></textarea>
-      </form>
-  </div>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!--TEXT AREA-->
+    <textarea class ="textarea" style="margin-left: 7%;" placeholder="Say Something.." name="body"></textarea>
     <div class="addphoto">
       <label class="icons" for="file" >
         <span class="material-icons"> &nbsp;
           add_a_photo
         </span>
-         Add a Photo </label>
+        Add a Photo </label>
       <input type="file" id="file" accept="image/*" name="image" />
-
-      <!-- {{form.post_image}} -->
+    <!-- {{form.post_image}} -->
     </div>
     <div class="pushb">
       <button class="btn btn-success mt-3">Post</button>
     </div>
-  
+  </form>
     <!-- zaki's code -->
   <div class="row justify-content-center mt-3 mb-5">
     <div class="col-md-5 col-sm-12">
