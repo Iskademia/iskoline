@@ -318,17 +318,17 @@ body {
     cursor: pointer;
     background-color: #3165d4;
     color: white;
-  }
-  
+}
+
+.bio {
+    float: right;
+    margin-top: -25%;
+
+}
+
 .material-icons:focus {
     cursor: text;
     color: #d3d3d3;
     background-color: fff;
     border-color: #333333;
-  }
-
-  .bio {
-      float: right;
-      margin-top: -25%;
-
   }
