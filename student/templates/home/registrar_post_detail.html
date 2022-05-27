@@ -25,7 +25,9 @@
             <div class="position-relative">
                 <p>{{ post.body }}</p>
                 {% if post.image %}
-                <img src="{{ post.image.url }}" class="post-image" />
+                <div class="image">
+                    <img src="{{ post.image.url }}" class="post-image" />
+                </div>
                 {% endif %}
             </div>
         </div>
@@ -41,7 +43,7 @@
             <form method="POST">
                 {% csrf_token %}
                 <div class="username">
-                    <textarea name="comment"></textarea>
+                    <textarea class ="textarea" placeholder="Say Something.." name="comment"></textarea>
                     <!-- {{form.description}} -->
                 </div>
                 <div class="d-grid gap-2">

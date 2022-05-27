@@ -234,7 +234,7 @@ class ProfileView(View):
 
 class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = UserProfile
-    fields = ['name', 'student_id', 'bio', 'gender', 'birth_date', 'location', 'picture']
+    fields = ['full_name', 'student_id', 'bio', 'gender', 'birth_date', 'location', 'picture']
     template_name = 'home/profile_edit.html'
 
     def get_success_url(self):
@@ -250,7 +250,7 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 #Registrar Views
 class RegistrarPostListView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
-        posts = RegistrarPost.filter(author=request.user).order_by('-date')
+        posts = RegistrarPost.objects.filter(author=request.user).order_by('-date')
         form = RegistrarPostForm()
         
         context = {
@@ -261,7 +261,7 @@ class RegistrarPostListView(LoginRequiredMixin, View):
         return render(request, 'home/registrar.html', context)
 
     def post(self, request, *args, **kwargs):
-        posts = RegistrarPost.objects.all().order_by('-date')
+        posts = RegistrarPost.objects.filter(author=request.user).order_by('-date')
         form = RegistrarPostForm(request.POST, request.FILES)
 
         if form.is_valid():
@@ -358,7 +358,7 @@ class ChairpersonPostListView(LoginRequiredMixin, View):
         return render(request, 'home/chairperson.html', context)
 
     def post(self, request, *args, **kwargs):
-        posts = ChairpersonPost.objects.all().order_by('-date')
+        posts = ChairpersonPost.objects.filter(author=request.user).order_by('-date')
         form = ChairpersonPostForm(request.POST, request.FILES)
 
         if form.is_valid():
@@ -440,6 +440,14 @@ class ChairpersonCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, Dele
         return self.request.user == comment.author
 
 def LandingPage(request):
+    if request.user.is_authenticated:
+        if not request.user.email:
+            if request.user.facultyprofile.is_chairperson:
+                return redirect("chairpersonindex")
+            else: 
+                return redirect("registrarindex")
+        else: 
+            return redirect('post_list')
     context = {
     }
     return render(request, 'home/index.html', context)

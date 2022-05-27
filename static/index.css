@@ -10,7 +10,7 @@
 
 body {
   background-image: url('images/ChatBg.png');
-  background-size: 100%;
+  /* background-size: 100%; */
   background-size: cover;
   background-color: #cadbe2;
   height: 100%;
@@ -29,9 +29,11 @@ body {
     border-radius: 3px;
     box-shadow: 0 3px 0 gray;
 }
+
 .navbar-nav{
   transform: translateX(25%);
 }
+
 .logo{
   max-width: 150px;
   max-height: 150px;
@@ -78,7 +80,7 @@ body {
 
 .navbar-text 
 {
-    font-size: 60px;
+    font-size: 2rem;
     font-weight: bold;
     /* color: CF0000; */
     background: -webkit-linear-gradient(right, #FF0000, #9F0606);
@@ -775,6 +777,7 @@ button:hover {
   .chat input[type="text"] {
     width: 500px;
   }
+ 
 }
 
 /*# sourceMappingURL=index.css.map */
