@@ -61,10 +61,7 @@ def logoutUser(request):
 @login_required(login_url='login')
 def AnnouncementView(request):
     if not request.user.email:
-        if request.user.facultyprofile.is_chairperson:
-            return redirect("chairpersonindex")
-        else: 
-            return redirect("registrarindex")
+        return redirect("cplogout")
     posts = AnnouncementPost.objects.all().order_by('-date')
     context = {'announcement': posts}
     return render(request, 'home/announcement.html', context)
@@ -121,10 +118,7 @@ class AnnouncementCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, Del
 @login_required(login_url="login")
 def PostFeed(request):
     if not request.user.email:
-        if request.user.facultyprofile.is_chairperson:
-            return redirect("chairpersonindex")
-        else: 
-            return redirect("registrarindex")
+        return redirect("cplogout")
     posts = Post.objects.filter(faculty__isnull=True).order_by('-date')
     faculty = FacultyProfile.objects.all()
     form = PostForm()
@@ -216,10 +210,7 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class ProfileView(View):
     def get(self, request, pk, *args, **kwargs):
         if not request.user.email:
-            if request.user.facultyprofile.is_chairperson:
-                return redirect("chairpersonindex")
-            else: 
-                return redirect("registrarindex")
+            return redirect("cplogout")
         profile = UserProfile.objects.get(pk=pk)
         user = profile.user
         posts = Post.objects.filter(author=user).order_by('-date')
@@ -442,10 +433,7 @@ class ChairpersonCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, Dele
 def LandingPage(request):
     if request.user.is_authenticated:
         if not request.user.email:
-            if request.user.facultyprofile.is_chairperson:
-                return redirect("chairpersonindex")
-            else: 
-                return redirect("registrarindex")
+            return redirect("cplogout")
         else: 
             return redirect('post_list')
     context = {
