@@ -1,85 +1,52 @@
 {% extends 'home/base.html' %} {% load crispy_forms_tags %} {% block content %}
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-     <!-- profile--> 
- 
-<div class="profile1">
-  <!--INSERT IMAGE-->
 
- </div>
-    <div class="name">
-        <!--name and student id-->
-        <h5><b>Fname M. Lname</b></h5>
-        <h6>2019-0000-MN-0</h6>
-    <!--notifications-->
-        <div class="notifications-home">
-          <h5><b>Notifications</b></h5>
-          <p>No Notifications</p>
+
+<div class="post-list-container">
+      <div class="profile1">
+        <div class="profile-card">
+        <div class="profile-image">
+          {% if request.user.profile.picture %}
+          <img src="{{ request.user.profile.picture.url }}" class="rounded-circle"/>
+          {% else %}
+          <img src="https://res.cloudinary.com/dmagk9gck/image/upload/v1652844857/media/uploads/default_u8embw.jpg" class="rounded-circle"/>
+          {% endif %}
+        </div>
+        <div class="name" style="color: black; text-decoration:none;">
+          <h5><b>{{ request.user.profile.name }}</b></h5>
+          <h6>{{ request.user.profile.student_id }}</h6>
+        </div>
+      </div> 
       </div>
-    </div>
- 
-
-
-<div class="container">
-  
-  <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <!--TEXT AREA-->
-    <textarea class ="textarea" placeholder="Say Something.." name="body"></textarea>
-    <div class="username">
-      <!-- {{form.description}} -->
-    </div>
-    <div class="username">
-      <label class="icons" for="file" >
-        <span class="material-icons"> &nbsp;
-          add_a_photo
-        </span>
-         Add a Photo </label>
-      <input type="file" id="file" accept="image/*" name="image" />
-
-      <!-- {{form.post_image}} -->
-    </div>
-    <div class="pushb">
-      <button class="btn btn-success mt-3">Post</button>
-    </div>
-  </form>
-  
-  <div class="row justify-content-center mt-3">
-  </div>
-  <div class="row justify-content-center mt-3 mb-5">
-    <div class="col-md-5 col-sm-12">
-      <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="username">
-          <label>Description: </label>
-          <textarea name="body"></textarea>
-          <!-- {{form.description}} -->
+  <div class="post">
+  <div class="addcontent">
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <textarea class ="textarea" placeholder="Say Something.." name="body"></textarea>
+      <div class="buttons">
+        <div class="addphoto">
+          <label class="button123" for="file"><span class="material-icons"> &nbsp;add_a_photo</span>Add a Photo</label>
+          <input type="file" id="file" accept="image/*" name="image" />
         </div>
-        <div class="username">
-          <label>Upload image: </label>
-          <input type="file" name="image" />
-          <!-- {{form.post_image}} -->
-        </div>
-        <select name="faculty" id="">
-          <option  value="" selected="selected">---SELECT---</option>
+        <select name="faculty" id="" style="max-width: 14rem; margin-bottom: 0.5rem">
+          <option value="" selected="selected">Home</option>
           {% for prof in faculty %}
           <option  value="{{prof.user}}">{{prof.name|capfirst}}</option>
           {% endfor %}
         </select>
-        <div class="d-grid gap-2">
-          <button class="btn btn-success mt-3">Submit!</button>
+        <div class="pushb">
+          <button class="btn btn-success">Post</button>
         </div>
-      </form>
-    </div>
-  </div>
+      </div>
+  </form>
+</div>
   {% for post in post_list %}
-  <div class="row justify-content-center mt-3">
+  <div class="justify-content-center mt-3">
     <div class="post-body col-md-10 col-sm-12 position-relative">
       <div>
         {% if post.author.profile.picture %}
         <img class="rounded-circle mr-3" height="50" width="50" src="{{ post.author.profile.picture.url }}" />
         {% else %}
-        <img src="https://res.cloudinary.com/dmagk9gck/image/upload/v1652844857/media/uploads/default_u8embw.jpg" class="rounded-circle mr-3" width="50" height="50" />
+        <img src="https://avatars.dicebear.com/api/initials/{{request.user}}.svg" class="rounded-circle mr-3" width="50" height="50" />
         {% endif %}
         <a class="profile-link" href="{% url 'profile' post.author.profile.pk %}">{{ post.author }}</a>
         {{ post.date | date:"F d, Y"}}
@@ -96,5 +63,6 @@
     </div>
   </div>
   {% endfor %}
+</div>
 </div>
 {% endblock content %}
