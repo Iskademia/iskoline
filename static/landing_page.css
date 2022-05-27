@@ -54,34 +54,48 @@ nav{
     align-items: center;
     margin-right: 50px;
 }
+
 .login{
     border-radius: 5px;
-    border: none;
-    background-color: #ff0000;
+    border:3px solid red;
+    color: red !important;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    color: white;
+    font-weight: bold;
     width: 100px;
     height: 40px;
+    transition: 0.4s;
+    cursor: pointer;
 }
 
+
 .login:hover {
-    background-color: #df0909;
+    background-color: red;
+    color:rgb(255, 255, 255) !important;
 }
+
 
 .register{
     border-radius: 5px;
-    border: none;
-    background-color: #D8D7CC;
-    color: red;
+    border: 3px solid blue;
+    color: blue !important;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-weight: bold;
     width: 100px;
     height: 40px;
     margin-left: 20px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.register a {
+    color: blue !important;
 }
 
 .register:hover {
-    background-color: #848484;
+    background-color: blue;
+    color: white !important;
 }
+
 
 .body{
     height: 90vh;
@@ -114,8 +128,26 @@ nav{
     color: black;
     backdrop-filter: blur(8px);
 }
-.iskoline h2{
+/* .iskoline h2{
     margin-top: 5rem;
+} */
+
+.description h1 {
+    font-size: 80px;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 10%;
+    /* color: #CF0000; */
+    background: -webkit-linear-gradient(right, #b80000, #ff0000);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logo-bg {
+    height: 100%;
+    width: 100%;
+    align-items: center;
 }
 
 .iskoline-info{
@@ -139,33 +171,21 @@ nav{
 } */
 
 
-/* .description h2 {
-    font-size: 20px;
-    margin-bottom: auto;
-} */
-
-.description {
+/* .description {
     text-align: justify;
-    /* text-align: center; */
+    /* text-align: center;
     align-items: center;
     justify-content: center;
     margin-left: 110px;
     margin-right: 90px;
-    /* display: flex; */
+    /* display: flex; 
     color: black;
     font-size: 30px;
     /* width: 500px;
     height: 500px; */
-    /* font-size: 50px; */
-}
-
-/* .description li {
-    text-align: justify;
-    margin-left: 110px;
-    margin-right: 90px;
-    font-size: 13px;
-    font-size: 1.5vw; 
+    /* font-size: 50px; 
 } */
+
 
 .buttons a{
     text-decoration: none;

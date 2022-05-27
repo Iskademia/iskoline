@@ -12,6 +12,8 @@ html{
 body {
     overflow-x: hidden;
 }
+
+
 /* custom scroll bar */
 ::-webkit-scrollbar {
     width: 10px;
@@ -67,6 +69,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     display: block;
+    background-color: #111;
 }
 
 .profile-link{
@@ -118,7 +121,7 @@ body {
 {
     font-size: 2rem;
     font-weight: bold;
-    color: #CF0000;
+    /* color: #CF0000; */
     background: -webkit-linear-gradient(right, #FF0000, #9F0606);
     -webkit-background-clip: text;
     background-clip: text;
@@ -129,7 +132,7 @@ body {
 {
     color: red !important;
     font-weight: bold;
-    font-size: larger;
+    font-size: 19px;
     text-align: left;
 }
 
@@ -174,7 +177,9 @@ body {
   .button2:hover button2:active {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
   }
-/* POST LIST student*/
+
+
+  /* POST LIST student*/
 
 /* profile
 */
@@ -293,21 +298,18 @@ body {
 }
   /*add a photo*/
 
-  /* .icons{
+.icons{
     color: white;
     height: 42px;
     width: 140px;
-    background-color: gray;
-    align-items: center;
-    font-size: 16px;
-    border-radius: 6px;
-    display: flex;
-    justify-content: center;
+    background-color:#3165d4;
+    position: absolute;
+    margin-left: -2.5%;
 }
 
 .icons:hover {
     cursor: pointer;
-    background-color: #3165d4;
+    background-color: #0a3799;
     color: white;
 } */
 
@@ -323,7 +325,6 @@ body {
     background-color: fff;
     border-color: #333333;
   }
-
 
   input[type="file"]{
     position: absolute;
