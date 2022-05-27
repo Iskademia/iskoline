@@ -24,6 +24,8 @@ from student.models import *
 def Chairperson(request):
     if request.user.email:
         return redirect("post_list")
+    elif not request.user.facultyprofile.is_chairperson:
+        return redirect("registrarindex")
     posts = ChairpersonPost.objects.all().order_by('-date')
     context = {'chairperson': posts}
     return render(request, 'department/chairpersonpost.html', context)
@@ -32,6 +34,8 @@ def Chairperson(request):
 def Registrar(request):
     if request.user.email:
         return redirect("post_list")
+    elif request.user.facultyprofile.is_chairperson:
+        return redirect("chairpersonindex")
     posts = RegistrarPost.objects.all().order_by('-date')
     context = {'registrar': posts}
     return render(request, 'department/registrarpost.html', context)
@@ -216,17 +220,28 @@ class AnnouncementCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, Del
 
 def loginPage(request):
     if request.user.is_authenticated:
-        return redirect('chairpersonindex')
+        if not request.user.email:
+            if request.user.facultyprofile.is_chairperson:
+                return redirect("chairpersonindex")
+            else: 
+                return redirect("registrarindex")
+        else: 
+            return redirect('post_list')
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-
         user = authenticate(request, username=username, password=password)
         if user is not None:
             faculty = FacultyProfile.objects.filter(user=user.id).values_list('is_faculty', flat=True)
-            if faculty:           
-                login(request, user)
-                return redirect('chairpersonindex')
+            chairperson = FacultyProfile.objects.filter(user=user.id).values_list('is_chairperson', flat=True)
+            print('is_chairperson', chairperson[0])
+            if faculty:
+                if chairperson == 'True':          
+                    login(request, user)
+                    return redirect('chairpersonindex')
+                else:
+                    login(request, user)
+                    return redirect('registrarindex')
         else:
             messages.info(request, 'Username or Password is incorrect')
 
