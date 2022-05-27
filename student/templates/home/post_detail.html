@@ -25,7 +25,9 @@
                 <a href="{% url 'post_delete' post.pk %}" style="color: #333; margin-left: 20px;"><i class="fas fa-trash"></i>Delete</a>
                 {% endif %}
                 {% if post.image %}
-                <img src="{{ post.image.url }}" class="post-image" />
+                <div class="image">
+                    <img src="{{ post.image.url }}" class="post-image" />
+                </div>
                 {% endif %}
             </div>
         </div>
@@ -41,7 +43,7 @@
             <form method="POST">
                 {% csrf_token %}
                 <div class="username">
-                    <textarea name="comment"></textarea>
+                    <textarea class ="textarea" placeholder="Say Something.." name="comment"></textarea>
                     <!-- {{form.description}} -->
                   </div>
                 <div class="d-grid gap-2">

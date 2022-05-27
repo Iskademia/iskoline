@@ -8,11 +8,11 @@
           {% if request.user.profile.picture %}
           <img src="{{ request.user.profile.picture.url }}" class="rounded-circle"/>
           {% else %}
-          <img src="https://res.cloudinary.com/dmagk9gck/image/upload/v1652844857/media/uploads/default_u8embw.jpg" class="rounded-circle"/>
+          <img src="https://avatars.dicebear.com/api/initials/{{request.user}}.svg" class="rounded-circle"/>
           {% endif %}
         </div>
         <div class="name" style="color: black; text-decoration:none;">
-          <h5><b>{{ request.user.profile.name }}</b></h5>
+          <h5><b>{{ request.user.profile.full_name }}</b></h5>
           <h6>{{ request.user.profile.student_id }}</h6>
         </div>
       </div> 
@@ -25,7 +25,7 @@
       <div class="buttons">
         <div class="addphoto">
           <label class="button123" for="file"><span class="material-icons"> &nbsp;add_a_photo</span>Add a Photo</label>
-          <input type="file" id="file" accept="image/*" name="image" />
+          <input class="homeimage" type="file" id="file" accept="image/*" name="image" />
         </div>
         <select name="faculty" id="" style="max-width: 14rem; margin-bottom: 0.5rem">
           <option value="" selected="selected">Home</option>

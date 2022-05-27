@@ -20,7 +20,7 @@ class Comment(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, primary_key=True, verbose_name='user', related_name='profile', on_delete=models.CASCADE)
-    name = models.CharField(max_length=30, blank=True, null=True)
+    full_name = models.CharField(max_length=50, blank=True, null=True)
     email = models.CharField(max_length=200, null=True)
     bio = models.TextField(max_length=50, blank=True, null=True)
     birth_date=models.DateField(null=True, blank=True)

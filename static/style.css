@@ -326,7 +326,7 @@ body {
     border-color: #333333;
   }
 
-  input[type="file"]{
+.homeimage{
     position: absolute;
     z-index: -1;
     top: 10px;
@@ -355,4 +355,11 @@ body {
     cursor: pointer;
     background-color: #557fe0;
     color: white;
+}
+
+.image img{
+    max-height: 500px;
+    min-height: 50%;
+    max-width: 80%;
+    min-width: 50%;
 }
