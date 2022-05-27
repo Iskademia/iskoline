@@ -280,6 +280,12 @@ body {
         */
 
 
+.pushb{
+    margin-left: 7%;
+    margin-top: 3%;
+    height: 42px;
+    
+}
 
 .editbutton{
     float: right;
