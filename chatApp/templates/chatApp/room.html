@@ -1,24 +1,10 @@
 {% extends 'chatApp/index.html' %} 
-{% load static %} 
+{% load static %}
 {% block title %} 
 Room || {{room_name}} 
 {% endblock %} 
 {% block content %}
-<header>
-  <div class="navbar">
-    <ul class="nav-links">
-      <a href="{% url 'post_list' %}"
-      ><img src="{% static '/images/ISKOLINE_LOGO.png' %}" alt="Logo"
-      /></a>
-      <div class="navbar-links">
-        <a href="{% url 'post_list' %}">Home</a>
-        <a href="{% url 'enterroom' %}">Enter a Room</a>
-        <a href="{% url 'saveroom' %}">Save Room</a>
-        <a href="{% url 'logout' %}"><u>{{request.user}}</u> , Logout</a>
-      </div>
-    </ul>
-  </div>
-</header>
+
 <body>
   <div class="chat-room">
     <div class="roomlist">
