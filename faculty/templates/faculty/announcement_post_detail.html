@@ -47,11 +47,7 @@
                 {% else %}
                 <img src="https://avatars.dicebear.com/api/initials/{{comment.author}}.svg" class="rounded-circle mr-3" width="50" height="50" />
                 {% endif %}
-                {% if comment.author.facultyprofile %}
                 {{ comment.author }}
-                {% else %}
-                <a class="profile-link" href="{% url 'profile' comment.author.profile.pk %}">{{ comment.author }}</a> 
-                {% endif %}
                 {{ comment.date }}
                 {% if request.user == comment.author %}
                 <a href="{% url 'facannouncement_comment_delete' post.pk comment.pk %}" style="color: #333;"><i class="fas fa-trash"></i></a>

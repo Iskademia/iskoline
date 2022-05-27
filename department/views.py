@@ -28,6 +28,15 @@ def Chairperson(request):
     context = {'chairperson': posts}
     return render(request, 'department/chairpersonpost.html', context)
 
+@login_required(login_url='cplogin')
+def Registrar(request):
+    if request.user.email:
+        return redirect("post_list")
+    posts = RegistrarPost.objects.all().order_by('-date')
+    context = {'registrar': posts}
+    return render(request, 'department/registrarpost.html', context)
+
+
 @login_required(login_url="cplogin")
 def Announcement(request):
     if request.user.email:
@@ -78,6 +87,61 @@ class ChairpersonPostDetailView(LoginRequiredMixin, View):
         }
         return render(request, 'department/chairpersoncomment.html', context)
 
+class ChairpersonCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = ChairpersonComment
+    template_name = 'department/chairperson_comment_delete.html'
+
+    def get_success_url(self):
+        pk = self.kwargs['post_pk']
+        return reverse_lazy('cpcomment', kwargs={'pk': pk})
+
+    def test_func(self):
+        comment = self.get_object()
+        return self.request.user == comment.author
+
+class RegistrarPostDetailView(LoginRequiredMixin, View):
+    def get(self, request, pk):
+        post = RegistrarPost.objects.get(pk=pk)
+        form = RegistrarCommentForm()
+        comments = RegistrarComment.objects.filter(post=post).order_by('-date')
+
+        context = {
+            'post': post,
+            'form': form,
+            'comments': comments,
+        }
+        return render(request, 'department/registrarcomment.html', context)
+
+    def post(self, request, pk, *args, **kwargs):
+        post = RegistrarPost.objects.get(pk=pk)
+        form = RegistrarCommentForm(request.POST)
+
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.author = request.user
+            new_comment.post = post
+            new_comment.save()
+        
+        comments = RegistrarComment.objects.filter(post=post).order_by('-date')
+
+        context = {
+            'post': post,
+            'form': form,
+            'comments': comments,
+        }
+        return render(request, 'department/registrarcomment.html', context)
+
+class RegistrarCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = RegistrarComment
+    template_name = 'department/registrar_comment_delete.html'
+
+    def get_success_url(self):
+        pk = self.kwargs['post_pk']
+        return reverse_lazy('rgcomment', kwargs={'pk': pk})
+
+    def test_func(self):
+        comment = self.get_object()
+        return self.request.user == comment.author
 
 class AnnouncementPostDetailView(LoginRequiredMixin, View):
     def get(self, request, pk):

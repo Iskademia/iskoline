@@ -23,6 +23,11 @@ from student.models import *
 def Faculty(request):
     if request.user.email:
         return redirect("post_list")
+    elif not request.user.email: 
+        if request.user.facultyprofile.is_chairperson:
+            return redirect("chairpersonindex")
+        else:
+            return redirect("registrarindex")
     posts = Post.objects.filter(faculty=request.user).order_by('-date')
     context = {
             'post_list': posts,

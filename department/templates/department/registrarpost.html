@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="container">
-        {% for post in chairperson %}
+        {% for post in registrar %}
         <div class="row justify-content-center mt-3">
             <div class="col-md-10 col-sm-12 border-bottom position-relative">
                 <div>
@@ -20,7 +20,7 @@
                     {% if post.image %}
                     <img src="{{ post.image.url }}" class="post-image" />
                     {% endif %}
-                    <a class="stretched-link" href="{% url 'cpcomment' post.pk %}"></a>
+                    <a class="stretched-link" href="{% url 'rgcomment' post.pk %}"></a>
                 </div>
             </div>
         </div>

@@ -19,6 +19,18 @@ class ChairpersonCommentForm(forms.ModelForm):
         model = ChairpersonComment
         fields = ['comment']
 
+class RegistrarCommentForm(forms.ModelForm):
+    comment = forms.CharField(
+        label='',
+        widget=forms.Textarea(
+            attrs={'rows': '3',
+                   'placeholder': 'Say Something...'}
+        ))
+
+    class Meta:
+        model = RegistrarComment
+        fields = ['comment']
+
 class AnnouncementForm(forms.ModelForm):
     class Meta:
         model = AnnouncementPost

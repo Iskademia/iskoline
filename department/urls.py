@@ -4,7 +4,11 @@ from . import views
 
 urlpatterns = [
     path('chairperson/', views.Chairperson, name='chairpersonindex'),
-    path('comment/<int:pk>/', ChairpersonPostDetailView.as_view(), name='comment'),
+    path('chairperson/comment/<int:pk>/', ChairpersonPostDetailView.as_view(), name='cpcomment'),
+    path('registrar/', views.Registrar, name='registrarindex'),
+    path('registrar/comment/<int:pk>/', RegistrarPostDetailView.as_view(), name='rgcomment'),
+    path('chairperson/<int:post_pk>/comment/delete/<int:pk>/', ChairpersonCommentDeleteView.as_view(), name='cpcommentdelete'),
+    path('registrar/<int:post_pk>/comment/delete/<int:pk>/', RegistrarCommentDeleteView.as_view(), name='rgcommentdelete'),
     path('login/', views.loginPage, name="cplogin"),
     path('logout/', views.logoutUser, name="cplogout"),
     path('announcement', views.Announcement, name='cpannouncement'),

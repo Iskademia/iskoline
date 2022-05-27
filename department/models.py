@@ -16,6 +16,7 @@ class FacultyProfile(models.Model):
     user = models.OneToOneField(User, primary_key=True, verbose_name='user', related_name='facultyprofile', on_delete=models.CASCADE)
     name = models.CharField(max_length=30, blank=True, null=True)
     is_faculty = models.BooleanField(default=True, verbose_name='is_faculty')
+    is_chairperson = models.BooleanField(default=False, verbose_name='is_chairperson')
 
 class AnnouncementPost(models.Model):
     body = models.TextField()
