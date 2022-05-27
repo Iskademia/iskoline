@@ -234,7 +234,7 @@ class ProfileView(View):
 
 class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = UserProfile
-    fields = ['name', 'student_id', 'bio', 'gender', 'birth_date', 'location', 'picture']
+    fields = ['full_name', 'student_id', 'bio', 'gender', 'birth_date', 'location', 'picture']
     template_name = 'home/profile_edit.html'
 
     def get_success_url(self):
@@ -250,7 +250,7 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 #Registrar Views
 class RegistrarPostListView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
-        posts = RegistrarPost.filter(author=request.user).order_by('-date')
+        posts = RegistrarPost.objects.filter(author=request.user).order_by('-date')
         form = RegistrarPostForm()
         
         context = {
