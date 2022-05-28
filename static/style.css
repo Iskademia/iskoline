@@ -77,7 +77,12 @@ body {
     color: black;
 }
 
-
+.profile{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 1rem;
+}
 @media only screen and (max-width:768) {
     .menu {
         position: absolute;
@@ -286,17 +291,39 @@ body {
 
 
 .pushb{
-    margin-left: 7%;
-    margin-top: 3%;
     height: 42px;
     
 }
-
-.editbutton{
-    float: right;
-    margin-bottom: 10px;
+.bio-container{
+    width: 30%;
+    text-align: center;
+    padding-top: 1rem;
 }
-  /*add a photo*/
+.editbutton{
+    border-radius: 5px;
+    border: 3px solid blue;
+    color: blue !important;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-weight: bold;
+    width: 130px;
+    height: 40px;
+    margin-left: 20px;
+    transition: 0.4s;
+    cursor: pointer;
+    text-align: center;
+    padding-top: 5px;
+}
+.editbutton a{
+    color: blue !important;
+}
+.editbutton:hover{
+    background-color: blue;
+    color: white !important;
+}
+.editbutton a:hover{
+    color: white !important;
+    text-decoration: none;
+}
 
 .icons{
     color: white;
@@ -311,13 +338,8 @@ body {
     cursor: pointer;
     background-color: #0a3799;
     color: white;
-} */
-
-.bio {
-    float: right;
-    margin-top: -25%;
-
 }
+
 
 .material-icons:focus {
     cursor: text;
