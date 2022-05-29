@@ -4,40 +4,46 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-3 col-sm-6">
-            <a href="{% url 'chairpersonindex' %}" class="btn btn-light">Back to Feed</a>
+            <!-- <a href="{% url 'chairpersonindex' %}" class="btn btn-light">Back to Feed</a> -->
+            <a href="{% url 'chairpersonindex' %}" style="text-decoration:None; color: white !important" button class="button button4">Back to Feed</a>
         </div>
     </div>
     <div class="row justify-content-center mt-3">
-        <div class="col-md-5 col-sm-12 border-bottom">
+        <div class="col-md-9 col-sm-12 border-bottom">
             <p>
-                <a href="{% url 'profile' post.author.profile.pk %}"></a>
-                {% if post.author.profile.picture %}
-                    <img class="rounded-circle mr-3" height="50" width="50" src="{{ post.author.profile.picture.url }}" />
-                {% else %}
-                <img src="https://res.cloudinary.com/dmagk9gck/image/upload/v1652844857/media/uploads/default_u8embw.jpg" class="rounded-circle mr-3" width="50" height="50" />
-                {% endif %}
-                    <a class="profile-link" href="{% url 'profile' post.author.profile.pk %}">{{ post.author }}</a> {{ post.date }}
-                {% if request.user == post.author %}
-                <a href="{% url 'chairperson_post_edit' post.pk %}" style="color: #333;"><i class="far fa-edit"></i></a>
-                <a href="{% url 'chairperson_post_delete' post.pk %}" style="color: #333;"><i class="fas fa-trash"></i></a>
-                {% endif %}
+                <div class="details1">
+                    <div>
+                    <a href="{% url 'profile' post.author.profile.pk %}"></a>
+                    {% if post.author.profile.picture %}
+                        <img class="rounded-circle mr-3" height="50" width="50" src="{{ post.author.profile.picture.url }}" />
+                    {% else %}
+                    <img src="https://avatars.dicebear.com/api/initials/{{post.author}}.svg" class="rounded-circle mr-3" width="50" height="50" />
+                    {% endif %}
+                        <b>{{ post.author.profile.full_name | title }}</b>
+                    </div>
+                    <div>{{ post.date }}</div>
+                </div>
             </p>
             <div class="position-relative">
                 <p>{{ post.body }}</p>
                 {% if post.image %}
                 <img src="{{ post.image.url }}" class="post-image" />
+                {% if request.user == post.author %}
+                <a href="{% url 'chairperson_post_edit' post.pk %}" style="color: #333;"><i class="far fa-edit"></i></a>
+                <a href="{% url 'chairperson_post_delete' post.pk %}" style="color: #333;"><i class="fas fa-trash"></i></a>
+                {% endif %}
                 {% endif %}
             </div>
         </div>
     </div>
-
+    
     <div class="row justify-content-center mt-3">
-        <div class="col-md-5 col-sm-12">
+        <div class="col-md-7 col-sm-12">
             <h5>Add a Comment!</h5>
         </div>
     </div>
     <div class="row justify-content-center mt-3 mb-5">
-        <div class="col-md-5 col-sm-12">
+        <div class="col-md-8 col-sm-12">
             <form method="POST">
                 {% csrf_token %}
                 <div class="username">
@@ -52,22 +58,26 @@
     </div>
     {% for comment in comments %}
     <div class="row justify-content-center mt-3 mb-5 border-bottom">
-        <div class="col-md-5 col-sm-12">
-                {% if comment.author.profile.picture %}
-                <img class="rounded-circle mr-3" height="50" width="50" src="{{ comment.author.profile.picture.url }}" />
-                {% else %}
-                <img src="https://avatars.dicebear.com/api/initials/{{comment.author}}.svg" class="rounded-circle mr-3" width="50" height="50" />
-                {% endif %}
-                {% if comment.author.facultyprofile %}
-                {{ comment.author }}
-                {% else %}
-                <a class="profile-link" href="{% url 'profile' comment.author.profile.pk %}">{{ comment.author }}</a> 
-                {% endif %}
-                {{ comment.date }}
-                {% if request.user == comment.author %}
-                <a href="{% url 'rgcommentdelete' post.pk comment.pk %}" style="color: #333;"><i class="fas fa-trash"></i></a>
-                {% endif %}
+        <div class="col-md-9 col-sm-12">
+            <div class="comdetails1">
+                <div>
+                    {% if comment.author.profile.picture %}
+                    <img class="rounded-circle mr-3" height="50" width="50" src="{{ comment.author.profile.picture.url }}" />
+                    {% else %}
+                    <img src="https://avatars.dicebear.com/api/initials/{{comment.author}}.svg" class="rounded-circle mr-3" width="50" height="50" />
+                    {% endif %}
+                    {% if comment.author.facultyprofile %}
+                    <b>{{ comment.author.facultyprofile.name | title }}</b>
+                    {% else %}
+                    <b>{{ comment.author.profile.full_name | title }}</b> 
+                    {% endif %}
+                </div> 
+                <div>{{ comment.date }}</div>
+        </div> 
             <p>{{ comment.comment }}</p>
+            {% if request.user == comment.author %}
+                <a href="{% url 'rgcommentdelete' post.pk comment.pk %}" style="color: #333;margin-left: 80%;"><i class="fas fa-trash"></i>Delete comment</a>
+                {% endif %}
         </div>
     </div>
     {% endfor %}

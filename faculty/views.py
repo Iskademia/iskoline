@@ -26,7 +26,7 @@ def Faculty(request):
     elif not request.user.email: 
         if request.user.facultyprofile.is_chairperson:
             return redirect("chairpersonindex")
-        else:
+        elif not request.user.facultyprofile.is_faculty:
             return redirect("registrarindex")
     posts = Post.objects.filter(faculty=request.user).order_by('-date')
     context = {
