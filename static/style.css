@@ -339,12 +339,6 @@ body {
     color: white;
 } 
 
-.bio {
-    float: right;
-    margin-top: -25%;
-}
-
-
 .material-icons:focus {
     cursor: text;
     color: #d3d3d3;
@@ -396,6 +390,11 @@ body {
 }
 
 .comdetails1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comdetails2 {
     display: flex;
     justify-content: space-between;
 }

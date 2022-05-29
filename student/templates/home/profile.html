@@ -69,15 +69,21 @@
     {% for post in posts %}
     <div class="row justify-content-center mt-3">
         <div class="post-body col-md-8 col-sm-12 border-bottom position-relative">
-            <p><strong>{{ post.author }}</strong> {{ post.date }}</p>
+            
+            <div class="comdetails2">
+                <div>
+                <p><strong>{{ post.author }}</strong></p>
+                </div>
+                <div><p>{{ post.date }}</p></div>
+            </div>
                 <div class="position-relative">
+                    <p>{{ post.body }}</p>
+                    <a href="{% url 'post_detail' post.pk %}" class="stretched-link"></a>
                 {% if post.image %}
                 <div class="image">
                     <img src="{{ post.image.url }}" class="post-image" />
                 </div>
                 {% endif %}
-                    <p>{{ post.body }}</p>
-                    <a href="{% url 'post_detail' post.pk %}" class="stretched-link"></a>
                 </div>
         </div>
     </div>
