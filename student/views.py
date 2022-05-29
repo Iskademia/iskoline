@@ -104,7 +104,7 @@ class AnnouncementPostDetailView(LoginRequiredMixin, View):
 
 class AnnouncementCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = AnnouncementComment
-    template_name = 'home/announcement_comment_delete'
+    template_name = 'home/announcement_comment_delete.html'
 
     def get_success_url(self):
         pk = self.kwargs['post_pk']

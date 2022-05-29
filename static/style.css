@@ -292,7 +292,6 @@ body {
 
 .pushb{
     height: 42px;
-    
 }
 .bio-container{
     width: 30%;
@@ -338,6 +337,11 @@ body {
     cursor: pointer;
     background-color: #0a3799;
     color: white;
+} 
+
+.bio {
+    float: right;
+    margin-top: -25%;
 }
 
 
@@ -385,3 +389,4 @@ body {
     max-width: 80%;
     min-width: 50%;
 }
+
