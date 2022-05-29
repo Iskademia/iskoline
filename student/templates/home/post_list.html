@@ -30,7 +30,9 @@
         <select name="faculty" id="" style="max-width: 14rem; margin-bottom: 0.5rem">
           <option value="" selected="selected">Home</option>
           {% for prof in faculty %}
-          <option  value="{{prof.user}}">{{prof.name|capfirst}}</option>
+            {% if prof.is_faculty %}
+              <option  value="{{prof.user}}">{{prof.name|capfirst}}</option>
+            {% endif %}
           {% endfor %}
         </select>
         <div class="pushb">
