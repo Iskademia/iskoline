@@ -7,7 +7,6 @@
     <div class="col-md-3 mb-5">
         <a href="{% url 'post_list' %}" style="text-decoration:None; color: white !important" button class="button button2">Back to Feed</a>
     </div>
-    
     <div class="profile-container justify-content-center">
         <div class="shadow-sm profile-container card shadow-sm col-md-12 border-bottom">
             <div class="profile">   
@@ -19,13 +18,12 @@
                         {% endif %}
                     
                     {% if profile.full_name %}
-                    <h3 class="py-7">{{ profile.full_name }}
+                    <h3 class="py-7">{{  profile.full_name | title }}
                         {% else %}
                         <h3 class="py-7">{{ user.username }}
                         </h3>
                         {% endif %}
                     </h3>
-
                     {% if profile.student_id %}
                     <b><p>{{ profile.student_id }}</p></b>
                     {% endif %}

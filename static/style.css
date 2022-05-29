@@ -390,3 +390,12 @@ body {
     min-width: 50%;
 }
 
+.details1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comdetails1 {
+    display: flex;
+    justify-content: space-between;
+}
