@@ -289,7 +289,6 @@ body {
     margin-left: 7%;
     margin-top: 3%;
     height: 42px;
-    
 }
 
 .editbutton{
@@ -311,7 +310,7 @@ body {
     cursor: pointer;
     background-color: #0a3799;
     color: white;
-} */
+} 
 
 .bio {
     float: right;
@@ -363,3 +362,4 @@ body {
     max-width: 80%;
     min-width: 50%;
 }
+
