@@ -17,7 +17,7 @@
                 {% endif %}
                 
                 {% if profile.full_name %}
-                <h3 class="py-7">{{ profile.full_name }}
+                <h3 class="py-7">{{ profile.full_name | title }}
                     {% else %}
                     <h3 class="py-7">{{ user.username }}
                     </h3>
@@ -29,11 +29,9 @@
                 {% endif %}
 
                 <div class="row">
-                    <div class="col-md-">
-                        {% if profile.birth_date %}
-                        <p> <i class="fa fa-birthday-cake"> </i>  {{ profile.birth_date }}  </p>
-                        {% endif %}
-                    </div>
+                    {% if profile.birth_date %}
+                    <p> <i class="fa fa-birthday-cake"> </i>  {{ profile.birth_date }}  </p>
+                    {% endif %}
                 
                     <div class="col-md-">
                         {% if profile.gender %}

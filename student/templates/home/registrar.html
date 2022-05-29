@@ -36,7 +36,18 @@
   {% for post in registrar %}
 <div class="justify-content-center mt-3">
   <div class="post-body col-md-10 col-sm-12 position-relative">
-    <div>
+    <div class="details1">
+      <div>
+          {% if post.author.profile.picture %}
+          <img class="rounded-circle mr-3" height="50" width="50" src="{{ post.author.profile.picture.url }}" />
+          {% else %}
+          <img src="https://avatars.dicebear.com/api/initials/{{post.author}}.svg" class="rounded-circle mr-3" width="50" height="50" />
+          {% endif %}
+          <a class="profile-link" href="{% url 'profile' post.author.profile.pk %}">{{ post.author }}</a>
+      </div>
+      <div class="date1">{{ post.date | date:"F d, Y"}}</div>
+  </div>
+    <!-- <div>
       {% if post.author.profile.picture %}
       <img class="rounded-circle mr-3" height="50" width="50" src="{{ post.author.profile.picture.url }}" />
       {% else %}
@@ -44,7 +55,7 @@
       {% endif %}
       <a class="profile-link" href="{% url 'profile' post.author.profile.pk %}">{{ post.author }}</a>
       {{ post.date | date:"F d, Y"}}
-    </div>
+    </div> -->
     <div class="post-content position-relative">
       <p>{{ post.body }}</p>
       {% if post.image %}

@@ -5,16 +5,18 @@
     <div class="container">
         <div class="row justify-content-center mt-3">
             <div class="col-md-5 col-sm-12">
-                <h5>Announcement!</h5>
+                <h1>Announcement!</h1>
             </div>
         </div>
         {% for post in announcement %}
         <div class="row justify-content-center mt-3">
             <div class="col-md-10 col-sm-12 border-bottom position-relative">
-                <div>
-                  <img src="https://avatars.dicebear.com/api/initials/{{post.author}}.svg" class="rounded-circle mr-3" width="50" height="50" />
-                  {{ post.author }}
-                  {{ post.date | date:"F d, Y"}}
+                <div class="details1">
+                    <div>
+                        <img src="https://avatars.dicebear.com/api/initials/{{post.author}}.svg" class="rounded-circle mr-3" width="50" height="50" />
+                        <b>{{ post.author.facultyprofile.name | title }}</b>
+                    </div>
+                  <div class="date1">{{ post.date | date:"F d, Y"}}</div> 
                 </div>
                 <div class="position-relative">
                     <p>{{ post.body }}</p>
