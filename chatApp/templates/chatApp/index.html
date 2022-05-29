@@ -34,7 +34,15 @@
 
 			<div class="collapse navbar-collapse"  id="collapse_target">
 				<ul class="navbar-nav">
+					{% if request.user.email %}
 					<li class="nav-item"><a class="nav-link" href="{% url 'post_list' %}">Home</a></li>
+					{% elif request.user.facultyprofile.is_chairperson %}
+					<li class="nav-item"><a class="nav-link" href="{% url 'chairpersonindex' %}">Home</a></li>
+					{% elif not request.user.facultyprofile.is_faculty %}
+					<li class="nav-item"><a class="nav-link" href="{% url 'registrarindex' %}">Home</a></li>
+					{% else %}
+					<li class="nav-item"><a class="nav-link" href="{% url 'facultyindex' %}">Home</a></li>
+					{% endif %}
 					<li class="nav-item"><a class="nav-link" href="{% url 'enterroom' %}">Enter a Room</a></li>
 					<li class="nav-item"><a class="nav-link" href="{% url 'saveroom' %}">Save Room</a></li>
 					<li class="nav-item"><a class="nav-link" href="{% url 'logout' %}"><u>{{request.user}}</u> , Logout</a></li>

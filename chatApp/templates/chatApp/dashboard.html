@@ -34,7 +34,7 @@ Dashboard {% endblock %} {% block content %}
       <div class="generate">
         <form method="post" action="">
           {% csrf_token %}
-          <label>Generate a Random Room</label>
+          <label><p>Generate a Random Room<p></label>
           {% if randROOM == None %}
             <h3></h3>
           {% else %}
