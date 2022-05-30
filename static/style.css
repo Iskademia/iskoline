@@ -41,7 +41,9 @@ body {
     max-height: 150px;
     margin-right: -20px;
 }
-
+nav{
+    z-index: 9999;
+}
 .navbar-nav{
     transform: translateX(22%);
 }
