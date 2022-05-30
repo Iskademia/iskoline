@@ -2,31 +2,31 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div class="container">
-        <div class="row justify-content-center mt-3">
-            <div class="col-md-5 col-sm-12">
-                <h5>Announcement!</h5>
+    <div class="post-list-container">
+        <div class="post justify-content-center">
+            <div class="mt-1 ml-3">
+                <h2>Announcements</h2>
             </div>
-        </div>
-        {% for post in announcement %}
-        <div class="row justify-content-center mt-3">
-            <div class="col-md-10 col-sm-12 border-bottom position-relative">
-                <div>
-                  <img src="https://avatars.dicebear.com/api/initials/{{post.author}}.svg" class="rounded-circle mr-3" width="50" height="50" />
-                  {{ post.author }}
-                  {{ post.date | date:"F d, Y"}}
-                </div>
-                <div class="position-relative">
-                    <p>{{ post.body }}</p>
-                    {% if post.image %}
-                    <div class="image">
-                        <img src="{{ post.image.url }}" class="post-image" />
+            {% for post in announcement %}
+            <div class="post-body mt-4 ml-5 ">
+                <div class="col-md-12 col-sm-12 border-bottom position-relative">
+                    <div class="author">
+                    <img src="https://avatars.dicebear.com/api/initials/{{post.author}}.svg" class="rounded-circle mr-3" width="50" height="50" />
+                    {{ post.author }}
+                    {{ post.date | date:"F d, Y"}}
                     </div>
-                    {% endif %}
-                    <a class="stretched-link" href="{% url 'announcement_post_detail' post.pk %}"></a>
+                    <div class="post-content position-relative">
+                        <p>{{ post.body }}</p>
+                        {% if post.image %}
+                        <div class="image">
+                            <img src="{{ post.image.url }}" class="post-image" />
+                        </div>
+                        {% endif %}
+                        <a class="stretched-link" href="{% url 'announcement_post_detail' post.pk %}"></a>
+                    </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 {% endblock content %}
