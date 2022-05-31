@@ -6,7 +6,7 @@
 }
 body {
     overflow: hidden;
-    background: url("../media/login-bg.jpg") no-repeat center !important;
+    background: url("https://res.cloudinary.com/dmagk9gck/image/upload/v1654008779/login-bg_i97fkw.jpg") no-repeat center !important;
     background-size: cover !important;
 }
 .container{
