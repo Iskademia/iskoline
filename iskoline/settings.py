@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-niso%l5824c__@nq&ixt5pap@)9hklbum7ila0n6x-5qa3p0b8"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['iskoline.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -89,6 +89,10 @@ DATABASES = {
     }
 }
 
+import dj_database_url
+
+DATABASES['default'] = dj_database_url.parse('postgres://szooexjozbsibi:da568506c802d5e434b93bfbc26c7129325bfe91426aae7a07ad081a4948e829@ec2-34-230-153-41.compute-1.amazonaws.com:5432/d9h69a4k3rbdba', conn_max_age=600)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -133,6 +137,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 STATIC_URL = "/static/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

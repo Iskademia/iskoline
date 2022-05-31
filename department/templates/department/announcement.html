@@ -28,7 +28,7 @@
             <div class="col-md-10 col-sm-12 border-bottom position-relative">
                 <div>
                     <img src="https://avatars.dicebear.com/api/initials/{{post.author}}.svg" class="rounded-circle mr-3" width="50" height="50" />
-                    {{ post.author }}
+                    <b>{{ post.author.facultyprofile.name | title }}</b>
                     {{ post.date | date:"F d, Y"}}
                 </div>
                 <div class="position-relative">

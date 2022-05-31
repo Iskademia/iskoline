@@ -234,7 +234,6 @@ def loginPage(request):
         if user is not None:
             faculty = FacultyProfile.objects.filter(user=user.id).values_list('is_faculty', flat=True)
             chairperson = FacultyProfile.objects.filter(user=user.id).values_list('is_chairperson', flat=True)
-            print('is_chairperson', chairperson[0])
             if faculty:
                 if chairperson == 'True':          
                     login(request, user)
