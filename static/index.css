@@ -11,9 +11,9 @@
 body {
   background-image: url('images/ChatBg.png');
   /* background-size: 100%; */
-  background-size: cover;
+  /* background-size: cover; */
   background-color: #cadbe2;
-  height: 100%;
+  height: 150%;
 }
 
 /* body {
@@ -67,10 +67,6 @@ body {
   font-size: 22px;
 }
 
-/* .nav-links a:hover {
-  opacity: 0.5;
-} */
-
 .navbar-links {
   /* padding-left: 500px; */
   padding-top: 27px;
@@ -87,6 +83,11 @@ body {
     -webkit-background-clip: text;
             background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+p {
+  font-size: 25px;
+  font-weight: bold;
 }
 
 section {
@@ -253,7 +254,7 @@ textarea,
 }
 
 .generate {
-  width: 400px;
+  width: 500px;
   height: 300px;
   margin-top: 4rem;
   margin-right: 5rem;
@@ -288,11 +289,12 @@ textarea,
   border: none;
   font-weight: bold;
   font-size: 18px;
-  background-color: #cadbe2;
+  background-color: #bdb0cd;
 }
 
 .generate button:hover{
-  background-color:#c8dce4;
+  background-color:#5c4278;
+  color: #ffffff;
 }
 
 .generate a {
@@ -300,13 +302,14 @@ textarea,
   border-radius: 5px;
   font-weight: bold;
   font-size: 18px;
-  background-color: #cadbe2;
+  background-color: #bdb0cd;
   color: #000000;
   padding: 0.8rem;
 }
 
 .generate a:hover {
-  background-color: #96becf;
+  background-color: #5c4278;
+  color: #ffffff;
 }
 
 .generate h3 {
@@ -447,7 +450,7 @@ textarea,
   border: none;
   font-weight: bold;
   font-size: 18px;
-  background-color: #cadbe2;
+  background-color: #bdb0cd;
 }
 
 .chat-room {
@@ -625,7 +628,7 @@ textarea,
   border: none;
   font-weight: bold;
   font-size: 18px;
-  background-color: #cadbe2;
+  background-color: #bdb0cd;;
 }
 
 .update-card a {
@@ -657,7 +660,7 @@ button:hover {
   text-align: center;
   text-decoration: none;
   padding: 0.5rem;
-  background: rgba(19, 30, 51, 0.15);
+  background: #a096ad;
   -webkit-box-shadow: 0 8px 20px 0 rgba(63, 63, 68, 0.37);
   box-shadow: 0 8px 20px 0 rgba(63, 63, 68, 0.37);
   backdrop-filter: blur(16px);
@@ -667,6 +670,11 @@ button:hover {
 
 .goback {
   margin-top: 1rem;
+}
+
+.goback a:hover {
+  background-color: #9589a3;
+  color: white;
 }
 
 #input:invalid + input[type="button"] {

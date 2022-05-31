@@ -61,10 +61,7 @@ def logoutUser(request):
 @login_required(login_url='login')
 def AnnouncementView(request):
     if not request.user.email:
-        if request.user.facultyprofile.is_chairperson:
-            return redirect("chairpersonindex")
-        else: 
-            return redirect("registrarindex")
+        return redirect("cplogout")
     posts = AnnouncementPost.objects.all().order_by('-date')
     context = {'announcement': posts}
     return render(request, 'home/announcement.html', context)
@@ -107,7 +104,7 @@ class AnnouncementPostDetailView(LoginRequiredMixin, View):
 
 class AnnouncementCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = AnnouncementComment
-    template_name = 'home/announcement_comment_delete'
+    template_name = 'home/announcement_comment_delete.html'
 
     def get_success_url(self):
         pk = self.kwargs['post_pk']
@@ -121,10 +118,7 @@ class AnnouncementCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, Del
 @login_required(login_url="login")
 def PostFeed(request):
     if not request.user.email:
-        if request.user.facultyprofile.is_chairperson:
-            return redirect("chairpersonindex")
-        else: 
-            return redirect("registrarindex")
+        return redirect("cplogout")
     posts = Post.objects.filter(faculty__isnull=True).order_by('-date')
     faculty = FacultyProfile.objects.all()
     form = PostForm()
@@ -216,10 +210,7 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class ProfileView(View):
     def get(self, request, pk, *args, **kwargs):
         if not request.user.email:
-            if request.user.facultyprofile.is_chairperson:
-                return redirect("chairpersonindex")
-            else: 
-                return redirect("registrarindex")
+            return redirect("cplogout")
         profile = UserProfile.objects.get(pk=pk)
         user = profile.user
         posts = Post.objects.filter(author=user).order_by('-date')
@@ -439,13 +430,87 @@ class ChairpersonCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, Dele
         comment = self.get_object()
         return self.request.user == comment.author
 
+
+# Faculty Views
+@login_required(login_url='login')
+def FacultyPost(request):
+    posts = Post.objects.filter(author=request.user ,faculty__isnull=False).order_by('-date')
+    context = {'faculty': posts}
+    return render(request, 'home/faculty.html', context)
+
+
+class FacultyPostDetailView(LoginRequiredMixin, View):
+    def get(self, request, pk):
+        post = Post.objects.get(pk=pk)
+        form = CommentForm()
+        comments = Comment.objects.filter(post=post).order_by('-date')
+
+        context = {
+            'post': post,
+            'form': form,
+            'comments': comments,
+        }
+        return render(request, 'home/faculty_post_detail.html', context)
+
+    def post(self, request, pk, *args, **kwargs):
+        post = Post.objects.get(pk=pk)
+        form = CommentForm(request.POST)
+
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.author = request.user
+            new_comment.post = post
+            new_comment.save()
+        
+        comments = Comment.objects.filter(post=post).order_by('-date')
+
+        context = {
+            'post': post,
+            'form': form,
+            'comments': comments,
+        }
+        return render(request, 'home/faculty_post_detail.html', context)
+
+class FacultyPostEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Post
+    fields = ['body','image']
+    template_name = 'home/faculty_post_edit.html'
+    
+    def get_success_url(self):
+        pk = self.kwargs['pk']
+        return reverse_lazy('faculty_post_detail', kwargs={'pk': pk})
+    
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author
+
+class FacultyPostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+    template_name = 'home/faculty_post_delete.html'
+    success_url = reverse_lazy('faculty')
+
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author
+
+class FacultyCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Comment
+    template_name = 'home/faculty_comment_delete.html'
+
+    def get_success_url(self):
+        pk = self.kwargs['post_pk']
+        return reverse_lazy('faculty_post_detail', kwargs={'pk': pk})
+
+    def test_func(self):
+        comment = self.get_object()
+        return self.request.user == comment.author
+
+
+
 def LandingPage(request):
     if request.user.is_authenticated:
         if not request.user.email:
-            if request.user.facultyprofile.is_chairperson:
-                return redirect("chairpersonindex")
-            else: 
-                return redirect("registrarindex")
+            return redirect("cplogout")
         else: 
             return redirect('post_list')
     context = {
