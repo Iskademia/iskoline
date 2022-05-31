@@ -97,5 +97,7 @@ body {
       position: absolute;
     }
   }
-  
+.errorlist{
+    padding-left: 1rem;
+}
   
