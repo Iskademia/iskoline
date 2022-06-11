@@ -58,8 +58,8 @@
                     </div>
                 </div>
                 {% if request.user == user %}
-                    <div class="editbutton">
-                        <a href="{% url 'profile_edit' profile.pk %}"><i class="far fa-edit"></i>EDIT PROFILE</a>
+                    <div>
+                        <a href="{% url 'profile_edit' profile.pk %}" class="btn btn-info"><i class="far fa-edit"></i>EDIT PROFILE</a>
                     </div>
                     {% endif %}
             </div>
@@ -70,16 +70,29 @@
 
     {% for post in posts %}
     <div class="row justify-content-center mt-3">
-        <div class="post-body col-md-8 col-sm-12 border-bottom position-relative">
-            <p><strong>{{ post.author }}</strong> {{ post.date }}</p>
+        <div class="post-body bg-light col-md-8 col-sm-12 border-bottom position-relative">
+            <div class="d-flex justify-content-between">
+                <div>
+                  {% if post.author.profile.picture %}
+                  <img class="rounded-circle mr-3" height="50" width="50" src="{{ post.author.profile.picture.url }}" />
+                  {% else %}
+                  <img src="https://avatars.dicebear.com/api/initials/{{request.user}}.svg" class="rounded-circle mr-3" width="50" height="50" />
+                  {% endif %}
+                  <a class="profile-link" href="{% url 'profile' post.author.profile.pk %}">{{ post.author }}</a>
+                </div>
+                <div>
+                  {{ post.date | date:"F d, Y"}}
+                </div>
+              </div>
                 <div class="position-relative">
-                {% if post.image %}
+                
+                    <p>{{ post.body }}</p>
+                    <a href="{% url 'post_detail' post.pk %}" class="stretched-link"></a>
+                    {% if post.image %}
                 <div class="image">
                     <img src="{{ post.image.url }}" class="post-image" />
                 </div>
                 {% endif %}
-                    <p>{{ post.body }}</p>
-                    <a href="{% url 'post_detail' post.pk %}" class="stretched-link"></a>
                 </div>
         </div>
     </div>

@@ -4,18 +4,18 @@
 <div class="post-list-container">
       <div class="profile1">
         <div class="profile-card">
-        <div class="profile-image">
-          {% if request.user.profile.picture %}
-          <img src="{{ request.user.profile.picture.url }}" class="rounded-circle"/>
-          {% else %}
-          <img src="https://avatars.dicebear.com/api/initials/{{request.user}}.svg" class="rounded-circle"/>
-          {% endif %}
-        </div>
-        <div class="name" style="color: black; text-decoration:none;">
-          <h5><b>{{ request.user.profile.full_name }}</b></h5>
-          <h6>{{ request.user.profile.student_id }}</h6>
-        </div>
-      </div> 
+          <div class="profile-image">
+            {% if request.user.profile.picture %}
+            <img src="{{ request.user.profile.picture.url }}" class="rounded-circle"/>
+            {% else %}
+            <img src="https://avatars.dicebear.com/api/initials/{{request.user}}.svg" class="rounded-circle"/>
+            {% endif %}
+          </div>
+          <div class="name" style="color: black; text-decoration:none;">
+            <h5><b>{{ request.user.profile.full_name }}</b></h5>
+            <h6>{{ request.user.profile.student_id }}</h6>
+          </div>
+        </div> 
       </div>
   <div class="post">
   <div class="addcontent">
@@ -58,5 +58,6 @@
 </div>
   {% endfor %}
 </div>
+<div class="space-div"></div>
 </div>
 {% endblock content %}
