@@ -161,4 +161,4 @@ EMAIL_HOST = "smtp.mailgun.org"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "postmaster@mg.iskoline.live"
-EMAIL_HOST_PASSWORD = "e199ff9afa250e112a71c7fbf0dfa3b6-5e7fba0f-a8c7e949"
+EMAIL_HOST_PASSWORD = "c81473025c75ddc0bb5859d94672bb67-523596d9-d81b917e"
