@@ -9,8 +9,6 @@
     font-family: 'Poppins', sans-serif;
 }
 html, body{
-    margin: 0;
-    height: 100vh;
     overflow-x: hidden;
     overflow-y: hidden;
 }
@@ -135,23 +133,26 @@ nav{
 .description h1 {
     font-size: 80px;
     font-weight: bold;
-    text-align: center;
-    margin-left: 10%;
     /* color: #CF0000; */
-    background: -webkit-linear-gradient(right, #b80000, #ff0000);
+    background: -webkit-linear-gradient(right, #ff0000, #b80000);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    margin-bottom: 3rem;
+}
+.description p {
+    font-size: 20px;
 }
 
 .logo-bg {
-    height: 100%;
-    width: 100%;
+    height: 15vh;
+    width: 15vw;
     align-items: center;
 }
 
 .iskoline-info{
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
@@ -171,20 +172,19 @@ nav{
 } */
 
 
-/* .description {
+ .description {
     text-align: justify;
-    /* text-align: center;
+    text-align: center;
     align-items: center;
     justify-content: center;
-    margin-left: 110px;
-    margin-right: 90px;
-    /* display: flex; 
+    display: flex; 
+    flex-direction: column;
     color: black;
-    font-size: 30px;
-    /* width: 500px;
-    height: 500px; */
-    /* font-size: 50px; 
-} */
+    width: 80vw;
+    height: 50vh;
+    font-size: 50px;
+    margin-top: -6rem;
+} 
 
 
 .buttons a{
