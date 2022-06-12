@@ -174,6 +174,7 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 def loginPage(request):
     if request.user.is_authenticated:
         return redirect('facultyindex')
+    accounts = FacultyProfile.objects.all()
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -187,7 +188,7 @@ def loginPage(request):
         else:
             messages.info(request, 'Username or Password is incorrect')
 
-    context = {}
+    context = {'faculty': accounts}
     return render(request, 'faculty/login.html', context)
 
 def logoutUser(request):

@@ -27,7 +27,15 @@
 					<form method="POST" action="">
 						{% csrf_token %}
 						<div class="input-group mb-3">
-							<input type="text" name="username" placeholder="Username..." class="form-control">
+						<select name="username" class="faculty custom-select">
+							<option value="" selected="selected">Username...</option>
+							{% for prof in faculty %}
+							  {% if not prof.is_faculty %}
+							<option value="{{prof.user}}">{{prof.name|capfirst}}
+							</option>
+							  {% endif %}
+							{% endfor %}
+						</select>
 						</div>
 						<div class="input-group mb-2">
 								<input type="password" name="password" placeholder="Password..." class="form-control" >
