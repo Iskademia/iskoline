@@ -7,9 +7,10 @@
 }
 body {
     overflow: hidden;
-    background: url("https://res.cloudinary.com/dmagk9gck/image/upload/v1654008779/login-bg_i97fkw.jpg") no-repeat center !important;
+    background: url("https://res.cloudinary.com/dmagk9gck/image/upload/v1655055969/2019-05-26_f2c1ha.jpg") no-repeat center !important;
     background-size: cover !important;
 }
+
 .container{
     display: flex;
     height: 100vh;
@@ -20,6 +21,14 @@ body {
     border-right: gray 1px solid;
     width: 70vw;
     height: 100vh;
+}
+.login-text{
+    color: #e79b78;
+    text-align: center;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    margin: 5rem 5rem auto;
+    font-weight: bold;
+    font-size: 1.5rem;
 }
 .user_card {
     width: 100%;

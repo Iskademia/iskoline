@@ -2,19 +2,25 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div class="post-list-container">
+    <div class="d-flex d-flex-column justify-content-center">
         <div class="post justify-content-center">
             <div class="mt-1 ml-3">
                 <h2>Announcements</h2>
             </div>
             {% for post in announcement %}
-            <div class="post-body mt-4 ml-5 ">
-                <div class="col-md-12 col-sm-12 border-bottom position-relative">
-                    <div class="author">
-                    <img src="https://avatars.dicebear.com/api/initials/{{post.author}}.svg" class="rounded-circle mr-3" width="50" height="50" />
-                    {{ post.author }}
-                    {{ post.date | date:"F d, Y"}}
-                    </div>
+            <div class="card mt-3">
+                <div class="bg-light col-md-12 col-sm-12 border-bottom position-relative">
+                    <div class="d-flex justify-content-between mt-2">
+                        
+                            <div>
+                                <img src="https://avatars.dicebear.com/api/initials/{{post.author}}.svg" class="rounded-circle mr-3" width="50" height="50" />
+                                <b>{{ post.author }}</b>
+                            </div>
+                            <div class="float-right">
+                                {{ post.date | date:"F d, Y"}}
+                            </div>
+                        </div>
+                    
                     <div class="post-content position-relative">
                         <p>{{ post.body }}</p>
                         {% if post.image %}
