@@ -18,8 +18,8 @@
     {% endif %}
 </head>
 <body>
-    <div class="navbar1">
-        <nav class="navbar navbar-expand-md navbar-dark sticky-top">
+    <div class="navbar1 sticky-top">
+        <nav class="navbar navbar-expand-md navbar-dark">
             <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -37,7 +37,7 @@
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown-target" href="#">Departments
                             <span class="caret"></span>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown_target">
+                        <div class="dropdown-menu navbar1" aria-labelledby="dropdown_target">
                             <a class="dropdown-item" href="{% url 'registrar' %}">Registrar</a>
                             <a class="dropdown-item" href="{% url 'chairperson' %}">Chairperson</a>
                             <a class="dropdown-item" href="{% url 'faculty' %}">Faculty</a>
