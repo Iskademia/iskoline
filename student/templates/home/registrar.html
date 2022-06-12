@@ -2,23 +2,23 @@
 
 
 <div class="post-list-container">
-      <div class="profile1">
-        <div class="profile-card">
-        <div class="profile-image">
-          {% if request.user.profile.picture %}
-          <img src="{{ request.user.profile.picture.url }}" class="rounded-circle"/>
-          {% else %}
-          <img src="https://avatars.dicebear.com/api/initials/{{request.user}}.svg" class="rounded-circle"/>
-          {% endif %}
-        </div>
-        <div class="name" style="color: black; text-decoration:none;">
-          <h5><b>{{ request.user.profile.full_name }}</b></h5>
-          <h6>{{ request.user.profile.student_id }}</h6>
-        </div>
-      </div> 
+  <div class="card profile1">
+    <div class="card-body profile-card">
+      <div class="profile-image">
+        {% if request.user.profile.picture %}
+        <img src="{{ request.user.profile.picture.url }}" class="rounded-circle"/>
+        {% else %}
+        <img src="https://avatars.dicebear.com/api/initials/{{request.user}}.svg" class="rounded-circle"/>
+        {% endif %}
       </div>
-  <div class="post">
-  <div class="addcontent">
+      <div class="name" style="color: black; text-decoration:none;">
+        <h5><b>{{ request.user.profile.full_name }}</b></h5>
+        <h6>{{ request.user.profile.student_id }}</h6>
+      </div>
+    </div> 
+  </div>
+  <div class="post mt-4">
+    <div class="addcontent displayflex-column">
     <form method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       <textarea class ="textarea" placeholder="Say Something.." name="body"></textarea>
@@ -27,47 +27,47 @@
           <label class="button123" for="file"><span class="material-icons"> &nbsp;add_a_photo</span>Add a Photo</label>
           <input class="homeimage" type="file" id="file" accept="image/*" name="image" />
         </div>
+        <select name="faculty" class="faculty custom-select">
+          <option value="" selected="selected">Home</option>
+          {% for prof in faculty %}
+          <option  value="{{prof.user}}">{{prof.name|capfirst}}</option>
+          {% endfor %}
+        </select>
         <div class="pushb">
           <button class="btn btn-success">Post</button>
         </div>
       </div>
-  </form>
-</div>
-  {% for post in registrar %}
-<div class="justify-content-center mt-3">
-  <div class="post-body col-md-10 col-sm-12 position-relative">
-    <div class="details1">
-      <div>
+    </form>
+    </div>
+    {% for post in registrar %}
+    <div class="posts mt-2">
+    <div class="post-body bg-light col-md-10 col-sm-12 position-relative">
+      <div class="d-flex justify-content-between">
+        <div>
           {% if post.author.profile.picture %}
           <img class="rounded-circle mr-3" height="50" width="50" src="{{ post.author.profile.picture.url }}" />
           {% else %}
-          <img src="https://avatars.dicebear.com/api/initials/{{post.author}}.svg" class="rounded-circle mr-3" width="50" height="50" />
+          <img src="https://avatars.dicebear.com/api/initials/{{request.user}}.svg" class="rounded-circle mr-3" width="50" height="50" />
           {% endif %}
           <a class="profile-link" href="{% url 'profile' post.author.profile.pk %}">{{ post.author }}</a>
+        </div>
+        <div>
+          {{ post.date | date:"F d, Y"}}
+        </div>
       </div>
-      <div class="date1">{{ post.date | date:"F d, Y"}}</div>
-  </div>
-    <!-- <div>
-      {% if post.author.profile.picture %}
-      <img class="rounded-circle mr-3" height="50" width="50" src="{{ post.author.profile.picture.url }}" />
-      {% else %}
-      <img src="https://avatars.dicebear.com/api/initials/{{request.user}}.svg" class="rounded-circle mr-3" width="50" height="50" />
-      {% endif %}
-      <a class="profile-link" href="{% url 'profile' post.author.profile.pk %}">{{ post.author }}</a>
-      {{ post.date | date:"F d, Y"}}
-    </div> -->
-    <div class="post-content position-relative">
-      <p>{{ post.body }}</p>
-      {% if post.image %}
-      <div class="image">
-        <img src="{{ post.image.url }}" class="post-image" />
-      </div>  
-      {% endif %}
-      <a class="stretched-link" href="{% url 'registrar_post_detail' post.pk %}"></a>
+      <div class="post-content position-relative mt-3">
+        <p>{{ post.body }}</p>
+        {% if post.image %}
+        <div class="image">
+          <img src="{{ post.image.url }}" class="post-image" />
+        </div>  
+        {% endif %}
+        <a class="stretched-link" href="{% url 'registrar_post_detail' post.pk %}"></a>
+      </div>
     </div>
+    </div>
+    {% endfor %}
   </div>
-</div>
-  {% endfor %}
-</div>
+  <div class="space-div"></div>
 </div>
 {% endblock content %}
