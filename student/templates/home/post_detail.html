@@ -24,8 +24,6 @@
               </div>
             <div class="position-relative">
                 <p>{{ post.body }}</p>
-                {% if request.user == post.author %}
-                {% endif %}
                 {% if post.image %}
                 <div class="image">
                     <img src="{{ post.image.url }}" class="post-image" />
@@ -80,7 +78,9 @@
             </div>
             <p class="pl-2">{{ comment.comment }}</p>
         </div>
+        {% if request.user == comment.author %}
         <a href="{% url 'comment_delete' post.pk comment.pk %}" class="btn btn-danger displayflex-column m-1" style="height: 2.5rem;"><i class="fas fa-trash"></i></a>
+        {% endif %}
     </div>
     
     {% endfor %}
