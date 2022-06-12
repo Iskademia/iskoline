@@ -92,6 +92,7 @@ nav{
 .profile-link{
     font-size: x-large;
     color: black;
+    text-decoration: none;
 }
 
 .profile{
@@ -155,13 +156,6 @@ nav{
     opacity: 0.5;
 }
 
-.navbar-toggler
-{
-    background-color: rgb(148, 34, 34);
-}
-.navbar-toggler:hover {
-    opacity: 0.5;
-}
 .buttons{
     display: flex;
     flex-direction: column;

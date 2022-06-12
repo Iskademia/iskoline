@@ -4,38 +4,47 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-3 col-sm-6">
-            <a href="{% url 'registrar' %}" class="btn btn-danger">Back to Feed</a>
+            <a href="{% url 'registrar' %}" class="btn btn-dark">Back to Feed</a>
         </div>
     </div>
-    <div class="row justify-content-center mt-3">
-        <div class="col-md-5 col-sm-12 border-bottom">
-            <p>
-                <a href="{% url 'profile' post.author.profile.pk %}"></a>
-                    {% if post.author.profile.picture %}
-                    <img class="rounded-circle mr-3" height="50" width="50" src="{{ post.author.profile.picture.url }}" />
-                    {% else %}
-                    <img src="https://avatars.dicebear.com/api/initials/{{request.user}}.svg" class="rounded-circle mr-3" width="50" height="50" />
-                    {% endif %}
-                    <a class="profile-link" href="{% url 'profile' post.author.profile.pk %}">{{ post.author }}</a> {{ post.date }}
-                {% if request.user == post.author %}
-                <a href="{% url 'registrar_post_edit' post.pk %}" style="color: #333;"><i class="far fa-edit"></i></a>
-                <a href="{% url 'registrar_post_delete' post.pk %}" style="color: #333;"><i class="fas fa-trash"></i></a>
-                {% endif %}
-            </p>
+    <div class="d-flex row justify-content-center mt-3">
+        <div class="post-body  bg-light mt-4 col-md-7 col-sm-12 position-relative">
+            <div class="d-flex justify-content-between">
+                <div>
+                  {% if post.author.profile.picture %}
+                  <img class="rounded-circle mr-3" height="50" width="50" src="{{ post.author.profile.picture.url }}" />
+                  {% else %}
+                  <img src="https://avatars.dicebear.com/api/initials/{{request.user}}.svg" class="rounded-circle mr-3" width="50" height="50" />
+                  {% endif %}
+                  <a class="profile-link" href="{% url 'profile' post.author.profile.pk %}">{{ post.author }}</a>
+                </div>
+                <div>
+                  {{ post.date }}
+                </div>
+              </div>
             <div class="position-relative">
                 <p>{{ post.body }}</p>
+                {% if request.user == post.author %}
+                {% endif %}
                 {% if post.image %}
                 <div class="image">
                     <img src="{{ post.image.url }}" class="post-image" />
                 </div>
+                
                 {% endif %}
             </div>
+            
+        </div>
+        <div class="float-right ml-2">
+            <a href="{% url 'registrar_post_edit' post.pk %}" class="btn btn-info d-flex justify-content-center" style="height: 2.5rem; margin-top: 2rem;"><i class="far fa-edit"></i> Edit</a>
+            <a href="{% url 'registrar_post_delete' post.pk %}" class="btn btn-danger mt-2" style="height: 2.5rem;"><i class="fas fa-trash"></i> Delete</a>
         </div>
     </div>
+    
 
     <div class="row justify-content-center mt-3">
-        <div class="col-md-5 col-sm-12">
-            <h5>Add a Comment!</h5>
+        <div class="col-md-8 col-sm-12">
+            <h5>Add a Comment</h5>
         </div>
     </div>
     <div class="row justify-content-center mt-3 mb-5">
@@ -43,9 +52,9 @@
             <form method="POST">
                 {% csrf_token %}
                 <div class="username">
-                    <textarea class ="textarea" placeholder="Say Something.." name="comment"></textarea>
+                    <textarea class ="textarea" placeholder="Comment Something.." name="comment"></textarea>
                     <!-- {{form.description}} -->
-                </div>
+                  </div>
                 <div class="d-grid gap-2">
                     <button class="btn btn-success mt-3">Submit!</button>
                 </div>
@@ -53,24 +62,24 @@
         </div>
     </div>
     {% for comment in comments %}
-    <div class="row justify-content-center mt-3 mb-5 border-bottom">
-        <div class="col-md-5 col-sm-12">
-                {% if comment.author.profile.picture %}
-                <img class="rounded-circle mr-3" height="50" width="50" src="{{ comment.author.profile.picture.url }}" />
+    <div class="d-flex">
+        <div class="post-body bg-light mb-3 col-md-10">
+            <div class="d-flex justify-content-between">
+                <div>
+                {% if post.author.profile.picture %}
+                <img class="rounded-circle mr-3" height="50" width="50" src="{{ post.author.profile.picture.url }}" />
                 {% else %}
-                <img src="https://avatars.dicebear.com/api/initials/{{comment.author}}.svg" class="rounded-circle mr-3" width="50" height="50" />
+                <img src="https://avatars.dicebear.com/api/initials/{{request.user}}.svg" class="rounded-circle mr-3" width="50" height="50" />
                 {% endif %}
-                {% if comment.author.facultyprofile %}
-                {{ comment.author }}
-                {% else %}
-                <a class="profile-link" href="{% url 'profile' comment.author.profile.pk %}">{{ comment.author }}</a> 
-                {% endif %}
-                {{ comment.date }}
-                {% if request.user == comment.author %}
-                <a href="{% url 'registrar_comment_delete' post.pk comment.pk %}" style="color: #333;"><i class="fas fa-trash"></i></a>
-                {% endif %}
-            <p>{{ comment.comment }}</p>
+                <a class="profile-link" href="{% url 'profile' post.author.profile.pk %}">{{ post.author }}</a>
+                </div>
+                <div>
+                {{ post.date | date:"F d, Y"}}
+                </div>
+            </div>
+            <p class="pl-2">{{ comment.comment }}</p>
         </div>
+        <a href="{% url 'registrar_comment_delete' post.pk comment.pk %}" class="btn btn-danger displayflex-column m-1" style="height: 2.5rem;"><i class="fas fa-trash"></i></a>
     </div>
     {% endfor %}
 </div>
