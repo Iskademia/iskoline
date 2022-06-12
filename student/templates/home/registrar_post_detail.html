@@ -32,6 +32,10 @@
                 </div>
                 
                 {% endif %}
+                {% if request.user == post.author %}
+                <a href="{% url 'registrar_post_delete' post.pk %}" style="color: #333; margin-left: 80%;"><i class="far fa-edit"></i>Edit</a>
+                <a href="{% url 'registar_post_delete' post.pk %}" style="color: #333; margin-left: 20px;"><i class="fas fa-trash"></i>Delete</a>
+                {% endif %}
             </div>
             
         </div>
@@ -48,7 +52,7 @@
         </div>
     </div>
     <div class="row justify-content-center mt-3 mb-5">
-        <div class="col-md-5 col-sm-12">
+        <div class="col-md-8 col-sm-12">
             <form method="POST">
                 {% csrf_token %}
                 <div class="username">

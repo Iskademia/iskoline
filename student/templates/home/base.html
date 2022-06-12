@@ -40,11 +40,12 @@
                         <div class="dropdown-menu navbar1" aria-labelledby="dropdown_target">
                             <a class="dropdown-item" href="{% url 'registrar' %}">Registrar</a>
                             <a class="dropdown-item" href="{% url 'chairperson' %}">Chairperson</a>
+                            <a class="dropdown-item" href="{% url 'faculty' %}">Faculty</a>
                         </div>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'announcement' %}">Announcements</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'chatindex' %}">Chat</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'profile' user.profile.pk %}">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'profile' request.user.profile.pk %}">Profile</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
                 </ul>
             </div>
