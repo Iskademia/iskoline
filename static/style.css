@@ -343,7 +343,9 @@ nav{
   }
 
 .homeimage{
-    display: none;
+    transform: translateX(-105px);
+    z-index: -1;
+    position: relative;
 }
 
 .addphoto {
@@ -359,6 +361,7 @@ nav{
     font-size: 16px;
     font-weight: bold;
     color: #fff;
+    z-index: 99;
   }
 
   .button123:hover {
