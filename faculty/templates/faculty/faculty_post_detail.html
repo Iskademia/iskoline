@@ -8,10 +8,9 @@
             <a href="{% url 'facultyindex' %}" style="text-decoration:None; color: white !important" button class="button button4">Back to Feed</a>
         </div>
     </div>
-    <div class="row justify-content-center mt-3">
-        <div class="col-md-9 col-sm-12 border-bottom">
-            <p>
-                <div class="details1">
+    <div class="d-flex row justify-content-center mt-3">
+        <div class="post-body  bg-light mt-4 col-md-7 col-sm-12 position-relative">
+            <div class="d-flex justify-content-between">
                     <div>
                         <a href="{% url 'profile' post.author.profile.pk %}"></a>
                         {% if post.author.profile.picture %}
@@ -23,7 +22,6 @@
                     </div>
                     <div>{{ post.date }}</div>
                 </div>
-            </p>
             <div class="position-relative">
                 <p>{{ post.body }}</p>
                 {% if post.image %}
@@ -53,9 +51,9 @@
         </div>
     </div>
     {% for comment in comments %}
-    <div class="row justify-content-center mt-3 mb-5 border-bottom">
-        <div class="col-md-9 col-sm-12">
-            <div class="comdetails1">
+    <div class="d-flex">
+        <div class="post-body bg-light mb-3 col-md-10">
+            <div class="d-flex justify-content-between">
                 <div>
                     {% if comment.author.profile.picture %}
                     <img class="rounded-circle mr-3" height="50" width="50" src="{{ comment.author.profile.picture.url }}" />
@@ -67,14 +65,16 @@
                     {% else %}
                     <b>{{ comment.author.profile.full_name | title }}</b>  
                     {% endif %}
-                </div> 
-                <div>{{ comment.date }}</div>
-        </div>  
-            <p>{{ comment.comment }}</p>
-            {% if request.user == comment.author %}
-                <a href="{% url 'faccomment_delete' post.pk comment.pk %}" style="color: #333; margin-left: 80%;"><i class="fas fa-trash"></i>Delete comment</a>
-                {% endif %}
+                </div>
+                <div>
+                {{ comment.date | date:"F d, Y"}}
+                </div>
+            </div>
+            <p class="pl-2">{{ comment.comment }}</p>
         </div>
+        {% if request.user == comment.author %}
+        <a href="{% url 'faccomment_delete' post.pk comment.pk %}" class="btn btn-danger displayflex-column m-1" style="height: 2.5rem;"><i class="fas fa-trash"></i></a>
+        {% endif %}
     </div>
     {% endfor %}
 </div>

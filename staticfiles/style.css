@@ -11,6 +11,7 @@ html{
 
 body {
     overflow-x: hidden;
+    background-color: rgb(238, 238, 238);
 }
 
 
@@ -37,9 +38,9 @@ body {
     min-height: 500px;
 }
 .logo{
-    max-width: 150px;
-    max-height: 150px;
-    margin-right: -20px;
+    max-width: 100px;
+    max-height: 100px;
+    margin-right: -1rem;
 }
 nav{
     z-index: 9999;
@@ -48,17 +49,31 @@ nav{
     transform: translateX(22%);
 }
 .post{
-    width: 80vw;
+    width: 60vw;
     height: 100%;
 }
 
+.displayflex-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 /* style for posts */
+.addcontent{
+    padding-left: 3rem;
+}
+
+.posts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .post-body {
-    padding-top: 10px;
-    margin-bottom: 10px;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
     border: 1px solid lightgray;
     border-radius: 10px;
-    box-shadow: 0 3px 0 gray;
+    box-shadow: 0 1px 0 lightgray;
 }
 .post-content{
     margin-top: 15px;
@@ -73,10 +88,11 @@ nav{
     display: block;
     background-color: #111;
 }
-
+ 
 .profile-link{
     font-size: x-large;
     color: black;
+    text-decoration: none;
 }
 
 .profile{
@@ -103,19 +119,12 @@ nav{
     }
 }
 
-/* .navbar-brand {
-    position: relative;
-} */
-
 
 .navbar1
 {
-    background-color: #ffffff;
-    /* background-color: #111; */
+    background-color: #4d1c1c;
     font-family: 'Poppins';
     font-size: 18px;
-    border: 1px solid lightgray;
-    border-radius: 3px; 
     box-shadow: 0 3px 0 gray;
     -webkit-box-shadow: 0 8px 20px 0 rgba(63, 63, 68, 0.37);
     box-shadow: 0 8px 20px 0 rgba(63, 63, 68, 0.37);
@@ -128,18 +137,17 @@ nav{
 {
     font-size: 2rem;
     font-weight: bold;
-    /* color: #CF0000; */
-    background: -webkit-linear-gradient(right, #FF0000, #9F0606);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
 } 
+.navbar-text:hover{
+    text-decoration: none;
+}
 
 .nav-item a
 {
-    color: red !important;
-    font-weight: bold;
-    font-size: 19px;
+    color: #FFFFFF !important;
+    font-size: 1rem;
     text-align: left;
 }
 
@@ -148,13 +156,6 @@ nav{
     opacity: 0.5;
 }
 
-.navbar-toggler
-{
-    background-color: rgb(148, 34, 34);
-}
-.navbar-toggler:hover {
-    opacity: 0.5;
-}
 .buttons{
     display: flex;
     flex-direction: column;
@@ -186,31 +187,24 @@ nav{
   }
 
 
-  /* POST LIST student*/
-
-/* profile
-*/
-
 .post-list-container{
     display: flex;
-    width: 100vw !important;
-    height: 100vh !important;
     justify-content: space-between !important;
     margin: 0 !important;
     padding: 0 !important;
-    margin-top: 2rem !important;
+    margin-top: 1rem !important;
 }
 .profile1 {
-    margin-left: 2rem;
-    margin-right: 2rem;
     background-color:#ffffff;
     height: 5rem;
     width: 20vw;
     border-radius: 10px;
-    border: 1px solid lightgray;
-    box-shadow: 0 3px 0 gray;
+    border: 1px solid #4d1c1c;
     display: flex;
-    
+    margin-left: 1rem;
+}
+.space-div{
+    width: 20vw;
 }
 .profile-card{
     width: 20vw;
@@ -221,10 +215,6 @@ nav{
 .profile1 img{
     width: 4rem;
     height: 4rem;
-}
-.profile1:hover{
-    color: #ececec;
-    /* background-color: #9e9e9e */
 }
 
 
@@ -265,7 +255,7 @@ nav{
     font-family: "Heebo", sans-serif;
     font-weight: 500;
     font-size: 16px;
-    width: 50rem;
+    width: 90%;
     height: 5rem;
     transition: all 0.2s;
     /* margin-top: -40%; */
@@ -291,7 +281,11 @@ nav{
  /* POST BUTTON
         */
 
+.faculty{
+    max-width: 14rem;
+    margin-bottom: 0.5rem
 
+}
 .pushb{
     height: 42px;
 }
@@ -349,13 +343,7 @@ nav{
   }
 
 .homeimage{
-    position: absolute;
-    z-index: -1;
-    top: 10px;
-    left: 8px;
-    font-size: 17px;
-    color: #030303;
-    padding-left: 50px;
+    display: none;
 }
 
 .addphoto {

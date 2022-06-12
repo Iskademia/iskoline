@@ -227,6 +227,7 @@ def loginPage(request):
                 return redirect("registrarindex")
         else: 
             return redirect('post_list')
+    accounts = FacultyProfile.objects.all()
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -244,7 +245,7 @@ def loginPage(request):
         else:
             messages.info(request, 'Username or Password is incorrect')
 
-    context = {}
+    context = {'faculty': accounts}
     return render(request, 'department/login.html', context)
 
 def logoutUser(request):
