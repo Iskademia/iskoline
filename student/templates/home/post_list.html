@@ -30,7 +30,9 @@
         <select name="faculty" class="faculty custom-select">
           <option value="" selected="selected">Home</option>
           {% for prof in faculty %}
+            {% if prof.is_faculty %}
           <option  value="{{prof.user}}">{{prof.name|capfirst}}</option>
+            {% endif %}
           {% endfor %}
         </select>
         <div class="pushb">
