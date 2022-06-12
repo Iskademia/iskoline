@@ -7,20 +7,20 @@
             <a href="{% url 'faculty' %}" style="text-decoration:None; color: white !important" button class="button button4">Back to Feed</a>
         </div>
     </div>
-    <div class="row justify-content-center mt-3">
-        <div class="col-md-5 col-sm-12 border-bottom">
-            <p>
-                <a href="{% url 'profile' post.author.profile.pk %}"></a>
-                    {% if post.author.profile.picture %}
-                    <img class="rounded-circle mr-3" height="50" width="50" src="{{ post.author.profile.picture.url }}" />
-                    {% else %}
-                    <img src="https://avatars.dicebear.com/api/initials/{{request.user}}.svg" class="rounded-circle mr-3" width="50" height="50" />
-                    {% endif %}
-                    <a class="profile-link" href="{% url 'profile' post.author.profile.pk %}">{{ post.author }}</a> {{ post.date }}
-                {% if request.user == post.author %}
-                <a href="{% url 'faculty_post_edit' post.pk %}" style="color: #333;"><i class="far fa-edit"></i></a>
-                <a href="{% url 'faculty_post_delete' post.pk %}" style="color: #333;"><i class="fas fa-trash"></i></a>
-                {% endif %}
+    <div class="d-flex row justify-content-center mt-3">
+        <div class="post-body  bg-light mt-4 col-md-7 col-sm-12 position-relative">
+            <div class="d-flex justify-content-between">
+                <div>
+                        <a href="{% url 'profile' post.author.profile.pk %}"></a>
+                        {% if post.author.profile.picture %}
+                        <img class="rounded-circle mr-3" height="50" width="50" src="{{ post.author.profile.picture.url }}" />
+                        {% else %}
+                        <img src="https://avatars.dicebear.com/api/initials/{{request.user}}.svg" class="rounded-circle" width="100" height="100" />
+                        {% endif %}
+                        <a class="profile-link" href="{% url 'profile' post.author.profile.pk %}">{{ post.author }}</a> 
+                    </div>
+                    <div>{{ post.date }}</div>
+                </div>
             </p>
             <div class="position-relative">
                 <p>{{ post.body }}</p>
@@ -31,15 +31,21 @@
                 {% endif %}
             </div>
         </div>
+        {% if request.user == post.author %}
+        <div class="float-right ml-2">
+            <a href="{% url 'faculty_post_edit' post.pk %}" class="btn btn-info d-flex justify-content-center" style="height: 2.5rem; margin-top: 2rem;"><i class="far fa-edit"></i> Edit</a>
+            <a href="{% url 'faculty_post_delete' post.pk %}" class="btn btn-danger mt-2" style="height: 2.5rem;"><i class="fas fa-trash"></i> Delete</a>
+        </div>
+        {% endif %}
     </div>
 
     <div class="row justify-content-center mt-3">
-        <div class="col-md-5 col-sm-12">
+        <div class="col-md-7 col-sm-12">
             <h5>Add a Comment!</h5>
         </div>
     </div>
     <div class="row justify-content-center mt-3 mb-5">
-        <div class="col-md-5 col-sm-12">
+        <div class="col-md-8 col-sm-12">
             <form method="POST">
                 {% csrf_token %}
                 <div class="username">
@@ -53,8 +59,10 @@
         </div>
     </div>
     {% for comment in comments %}
-    <div class="row justify-content-center mt-3 mb-5 border-bottom">
-        <div class="col-md-5 col-sm-12">
+    <div class="d-flex">
+        <div class="post-body bg-light mb-3 col-md-10">
+            <div class="d-flex justify-content-between">
+                <div>
                 {% if comment.author.profile.picture %}
                 <img class="rounded-circle mr-3" height="50" width="50" src="{{ comment.author.profile.picture.url }}" />
                 {% else %}
@@ -65,12 +73,16 @@
                 {% else %}
                 <a class="profile-link" href="{% url 'profile' comment.author.profile.pk %}">{{ comment.author }}</a> 
                 {% endif %}
-                {{ comment.date }}
-                {% if request.user == comment.author %}
-                <a href="{% url 'faculty_comment_delete' post.pk comment.pk %}" style="color: #333;"><i class="fas fa-trash"></i></a>
-                {% endif %}
-            <p>{{ comment.comment }}</p>
+            </div> 
+            <div>
+                {{ comment.date | date:"F d, Y"}}
+                </div>
+            </div>
+            <p class="pl-2">{{ comment.comment }}</p>
         </div>
+        {% if request.user == comment.author %}
+        <a href="{% url 'faculty_comment_delete' post.pk comment.pk %}" class="btn btn-danger displayflex-column m-1" style="height: 2.5rem;"><i class="fas fa-trash"></i></a>
+        {% endif %}
     </div>
     {% endfor %}
 </div>
